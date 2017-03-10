@@ -23,7 +23,7 @@
     "noAnalyze": true,
     "repository" : {
         "type": "git",
-        "url": "ssh://git@github.com:pip-services/pip-services-users-node.git"
+        "url": "ssh://git@github.com:pip-services-users/pip-services-users-node.git"
     },
     "license": "MIT",
     "engines": {
