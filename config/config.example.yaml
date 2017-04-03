@@ -1,0 +1,19 @@
+- descriptor: "pip-services-container:container-info:default:default:1.0"
+  name: "pip-services-accounts"
+  description: "User accounts microservice"
+
+- descriptor: "pip-services-commons:logger:console:default:1.0"
+  level: "trace"
+
+- descriptor: "pip-services-accounts:persistence:file:default:1.0"
+  path: "./data/accounts.json"
+
+- descriptor: "pip-services-accounts:controller:default:default:1.0"
+  options:
+    login_as_email: true
+
+- descriptor: "pip-services-accounts:service:http:default:1.0"
+  connection:
+    protocol: "http"
+    host: "0.0.0.0"
+    port: 3000

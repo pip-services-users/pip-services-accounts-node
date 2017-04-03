@@ -1,0 +1,33 @@
+import { ConfigParams } from 'pip-services-commons-node';
+import { IConfigurable } from 'pip-services-commons-node';
+import { IReferences } from 'pip-services-commons-node';
+import { IReferenceable } from 'pip-services-commons-node';
+import { FilterParams } from 'pip-services-commons-node';
+import { PagingParams } from 'pip-services-commons-node';
+import { DataPage } from 'pip-services-commons-node';
+import { ICommandable } from 'pip-services-commons-node';
+import { CommandSet } from 'pip-services-commons-node';
+import { AccountV1 } from '../data/version1/AccountV1';
+import { IAccountsBusinessLogic } from './IAccountsBusinessLogic';
+export declare class AccountsController implements IConfigurable, IReferenceable, ICommandable, IAccountsBusinessLogic {
+    private static _emailRegex;
+    private static _defaultConfig;
+    private _dependencyResolver;
+    private _logger;
+    private _persistence;
+    private _commandSet;
+    private _activitiesClient;
+    private _loginAsEmail;
+    configure(config: ConfigParams): void;
+    setReferences(references: IReferences): void;
+    getCommandSet(): CommandSet;
+    getAccounts(correlationId: string, filter: FilterParams, paging: PagingParams, callback: (err: any, page: DataPage<AccountV1>) => void): void;
+    getAccountById(correlationId: string, id: string, callback: (err: any, account: AccountV1) => void): void;
+    getAccountByLogin(correlationId: string, login: string, callback: (err: any, account: AccountV1) => void): void;
+    getAccountByIdOrLogin(correlationId: string, idOrLogin: string, callback: (err: any, account: AccountV1) => void): void;
+    private validateAccount(correlationId, account, callback);
+    private logUserActivity(correlationId, account, activityType);
+    createAccount(correlationId: string, account: AccountV1, callback: (err: any, account: AccountV1) => void): void;
+    updateAccount(correlationId: string, account: AccountV1, callback: (err: any, account: AccountV1) => void): void;
+    deleteAccountById(correlationId: string, id: string, callback: (err: any, account: AccountV1) => void): void;
+}

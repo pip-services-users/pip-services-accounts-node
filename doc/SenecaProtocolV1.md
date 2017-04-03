@@ -1,15 +1,17 @@
-# Seneca Protocol (version 1) <br/> Users Microservice
+# Seneca Protocol (version 1) <br/> User Accounts Microservice
 
-Users microservice implements a Seneca compatible API. 
+User accounts microservice implements a Seneca compatible API. 
 Seneca port and protocol can be specified in the microservice [configuration](Configuration.md/#api_seneca). 
 
 ```javascript
 var seneca = require('seneca')();
 
 seneca.client({
-    type: 'tcp', // Microservice seneca protocol
-    localhost: 'localhost', // Microservice localhost
-    port: 8809, // Microservice seneca port
+    connection: {
+        protocol: 'tcp', // Microservice seneca protocol
+        localhost: 'localhost', // Microservice localhost
+        port: 8809, // Microservice seneca port
+    }
 });
 ```
 
@@ -18,7 +20,7 @@ The microservice responds on the following requests:
 ```javascript
 seneca.act(
     {
-        role: 'users',
+        role: 'accounts',
         version: 1,
         cmd: ...cmd name....
         ... Arguments ...
@@ -29,136 +31,128 @@ seneca.act(
 );
 ```
 
-* [User class](#class1)
-* [UserPage class](#class2)
-* [cmd: 'get_users'](#operation1)
-* [cmd: 'find_user'](#operation2)
-* [cmd: 'get_user_by_id'](#operation3)
-* [cmd: 'create_user'](#operation4)
-* [cmd: 'rename_user'](#operation5)
-* [cmd: 'update_user'](#operation6)
-* [cmd: 'delete_user'](#operation7)
-* [cmd: 'resend_email_verification'](#operation8)
-* [cmd: 'verify_email'](#operation9)
-* [cmd: 'check_email_used'](#operation10)
+* [AccountV1 class](#class1)
+* [DataPage<AccountV1> class](#class2)
+* [cmd: 'get_accounts'](#operation1)
+* [cmd: 'get_account_by_id'](#operation2)
+* [cmd: 'get_account_by_login'](#operation3)
+* [cmd: 'get_account_by_id_or_login'](#operation4)
+* [cmd: 'create_account'](#operation5)
+* [cmd: 'rename_account'](#operation6)
+* [cmd: 'update_account'](#operation7)
+* [cmd: 'delete_account'](#operation8)
 
 ## Data types
 
-### <a name="class1"></a> User class
+### <a name="class1"></a> AccountV1 class
 
-Represents a user account with his ID, name, email, password and key settings.
+Represents a account account with his ID, name, email, password and key settings.
 It also tracks signup/signin dates and authentication attempts. 
 
 **Properties:**
-- id: string - unique user id
-- name: string - full user name (first and last name)
-- email: string - primary user email that is unique and used as login
-- created: Date - date and time when user account was created
-- active: boolean - true if user account is active, and false for disabled accounts
-- time_zone: int - user selected timezone
-- language: string - user selected language (and culture)
-- theme: string - user selected application color theme
+- id: string - unique account id
+- name: string - full account name (first and last name)
+- login: string - user login or primary email if controller is configured so
+- create_time: Date - date and time when account account was created
+- active: boolean - true if account account is active, and false for disabled accounts
+- time_zone: int - account selected timezone
+- language: string - account selected language (and culture)
+- theme: string - account selected application color theme
 - custom_hdr: Object - custom data summary that is always returned (in list and details)
 - custom_dat: Object - custom data details that is returned only when a single object is returned (details)
 
-### <a name="class2"></a> UserPage class
+### <a name="class2"></a> DataPage<AccountV1> class
 
-Represents a paged result with subset of requested User objects
+Represents a paged result with subset of requested Account objects
 
 **Properties:**
-- data: [User] - array of retrieved User page
+- data: [AccountV1] - array of retrieved Account page
 - count: int - total number of objects in retrieved resultset
 
 ## Operations
 
-### <a name="operation1"></a> Cmd: 'get_users'
+### <a name="operation1"></a> Cmd: 'get_accounts'
 
-Retrieves a list of users by specified criteria
+Retrieves a list of accounts by specified criteria
 
 **Arguments:** 
 - filter: object - filter parameters
-  - email: string - (optional) user email address
-  - name: string - (optional) user full name
-  - active: boolean - (optional) user active flag
-  - search: string - (optional) full-text search by name and email
+  - search: string - (optional) search substring to find in source, type or message
+  - id: string - (optional) account id
+  - login: string - (optional) user login
+  - name: stromg - (optional) user name
+  - from\_create\_time: Date - (optional) start of the time range
+  - to\_create\_time: Date - (optional) end of the time range
 - paging: object - paging parameters
-  - skip: int - (optional) start of page (default: 0). Operation returns paged result
-  - take: int - (optional) page length (max: 100). Operation returns paged result
+  - skip: int - (optional) start of page (default: 0)
+  - take: int - (optional) page length (default: 100)
+  - total: boolean - (optional) include total counter into paged result (default: false)
 
 **Returns:**
 - err: Error - occured error or null for success
-- result: [User] or UserPage - retrieved User objects in plain array or page format
+- result: DataPage<AccountV1> - retrieved Account objects in plain array or page format
 
-### <a name="operation2"></a> Cmd: 'find_user'
+### <a name="operation2"></a> Cmd: 'get\_account\_by_id'
 
-Finds a user by unique id or email
+Get a account by its unique id
 
 **Arguments:** 
-- user_id: string - (optional) unique user id
-- email: string - (optional) user primary email 
+- account_id: string - (optional) unique account id
 
 **Returns:**
 - err: Error - occured error or null for success
-- result: User - User account or null if user wasn't found
+- result: AccountV1 - Account account or null if account wasn't found
 
-### <a name="operation3"></a> Cmd: 'get_user_by_id'
+### <a name="operation3"></a> Cmd: 'get\_account\_by_login'
 
-Retrieves user account by its unique id. 
-It throws an error when requested account is not found. 
+Retrieves account by user login
 
 **Arguments:** 
-- user_id: string - unique user id
+- login: string - user login
 
 **Returns:**
 - err: Error - occured error or null for success
-- result: User - retrieved User account
+- result: AccountV1 - retrieved Account account
 
-### <a name="operation4"></a> Cmd: 'create_user'
+### <a name="operation4"></a> Cmd: 'get\_account\_by\_or\_login'
 
-Registers a new user in the system and creates an account for him.
+Retrieves account by unique id or user login
 
 **Arguments:** 
-- user: User - user account info that includes
-  - id: string - (optional) unique user id generated by the client
-  - name: string - full user name
-  - email: string - unique primary user email address
-  - ... - other optional user settings like time_zone, language or theme
+- idOrLogin: string - account id or user login
 
 **Returns:**
 - err: Error - occured error or null for success
-- result: User - created User account
+- result: AccountV1 - retrieved Account account
 
-### <a name="operation5"></a> Cmd: 'rename_user'
+### <a name="operation5"></a> Cmd: 'create_account'
 
-Changes user full name or/and primary email
+Creates a new account in the system.
 
 **Arguments:** 
-- user_id: string - unique user id
-- name: string - (optional) new user full name 
-- email: string - (optional) new user primary email 
+- account: AccountV1 - user accunt
 
 **Returns:**
 - err: Error - occured error or null for success
-- result: User - updated User account
+- result: AccountV1 - created Account account
 
-### <a name="operation6"></a> Cmd: 'update_user'
+### <a name="operation6"></a> Cmd: 'update_account'
 
-Changes user account settings such as time_zone, language, theme.
+Changes account account settings such as time_zone, language, theme.
 
 **Arguments:** 
-- user_id: string - unique user id
-- user: User - user account with new settings (partial updates are supported)
+- account: AccountV1 - account account with new settings (partial updates are supported)
 
 **Returns:**
 - err: Error - occured error or null for success
-- result: User - updated User account
+- result: AccountV1 - updated Account account
 
-### <a name="operation7"></a> Cmd: 'delete_user'
+### <a name="operation7"></a> Cmd: 'delete\_account\_by_id'
 
-Deletes user account from the system (use it carefully!)
+Deletes account account from the system (use it carefully!)
 
 **Arguments:** 
-- user_id: string - unique user id
+- account_id: string - unique account id
 
 **Returns:**
 - err: Error - occured error or null for success

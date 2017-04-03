@@ -1,6 +1,6 @@
-# Deployment Guide <br/> Users Microservice
+# Deployment Guide <br/> User Accounts Microservice
 
-Users microservice can be used in different deployment scenarios.
+User accounts microservice can be used in different deployment scenarios.
 
 * [Standalone Process](#process)
 * [Seneca Plugin](#seneca)
@@ -13,7 +13,7 @@ You can get it from the official site at https://nodejs.org/en/download
 
 **Step 1.** Download microservices by following [instructions](Download.md)
 
-**Step 2.** Add **config.json** file to the root of the microservice folder and set configuration parameters. 
+**Step 2.** Add **config.yaml** file to the root of the microservice folder and set configuration parameters. 
 See [Configuration Guide](Configuration.md) for details.
 
 **Step 3.** Start the microservice using the command:
@@ -34,7 +34,7 @@ To learn more about Seneca microservices framework to go http://senecajs.org
     ...
     "dependencies": {
         ....
-        "pip-services-users": "git+ssh://git@github.com:pip-services/pip-services-users.git",
+        "pip-services-users-node": "^1.0.*",
         ...
     }
 }
@@ -59,16 +59,22 @@ See [Configuration Guide](Configuration.md) for details.
 var seneca = require('seneca')();
 
 var config = {
-    log: { type: 'console' },
-    counters: { type: 'log' },
-    db: {
+    logger: { 
+        level: 'debug' 
+    },
+    persistence: {
         type: 'file',
-        path: 'users.json'
+        path: 'accounts.json'
+    },
+    activities: {
+        
     }
 };
 
-seneca.use('pip-services-users', config);
+var plugin = require('pip-services-accounts-node').AccountsSenecaPlugin;
+
+seneca.use(plugin, config);
 ```
 
 You can use the microservice by calling seneca commands directly as described in [Seneca Protocol](SenecaProtocolV1.md)
-or by using [UsersSenecaClient](https://github.com/pip-services/pip-clients-users-node/NodeClientApiV1.md/#client_seneca)
+or by using [UsersSenecaClient](https://github.com/pip-services-users/pip-clients-accounts-node/NodeClientApiV1.md/#client_seneca)
