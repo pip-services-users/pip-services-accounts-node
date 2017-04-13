@@ -1,7 +1,7 @@
 let AccountsProcess = require('../obj/src/container/AccountsProcess').AccountsProcess;
 
 try {
-    new AccountsProcess().runWithArguments(process.argv);
+    new AccountsProcess().run(process.argv);
 } catch (ex) {
     console.error(ex);
 }

@@ -5,15 +5,9 @@ import { AccountsFactory } from '../build/AccountsFactory';
 
 export class AccountsProcess extends ProcessContainer {
 
-    protected initReferences(references: IReferences): void {
-        super.initReferences(references);
-
-        // Factory to statically resolve Accounts components
-        references.put(AccountsFactory.Descriptor, new AccountsFactory());
-    }
-
-    public runWithArguments(args: string[]): void {
-        return this.runWithArgumentsOrConfigFile("accounts", args, "./config/config.yaml");
+    public constructor() {
+        super("accounts", "User accounts microservice");
+        this._factories.add(new AccountsFactory);
     }
 
 }

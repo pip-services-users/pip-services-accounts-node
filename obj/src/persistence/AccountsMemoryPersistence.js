@@ -55,7 +55,7 @@ class AccountsMemoryPersistence extends pip_services_data_node_1.IdentifiableMem
         let items = this._items.filter((x) => { return x.login == login; });
         let item = items.length > 0 ? items[0] : null;
         if (item != null)
-            this._logger.trace(correlationId, "Retrieved %s by %s", item, login);
+            this._logger.trace(correlationId, "Retrieved item by %s", login);
         else
             this._logger.trace(correlationId, "Cannot find item by %s", login);
         callback(null, item);
@@ -64,7 +64,7 @@ class AccountsMemoryPersistence extends pip_services_data_node_1.IdentifiableMem
         let items = this._items.filter((x) => { return x.id == idOrLogin || x.login == idOrLogin; });
         let item = items.length > 0 ? items[0] : null;
         if (item != null)
-            this._logger.trace(correlationId, "Retrieved %s by %s", item, idOrLogin);
+            this._logger.trace(correlationId, "Retrieved item by %s", idOrLogin);
         else
             this._logger.trace(correlationId, "Cannot find item by %s", idOrLogin);
         callback(null, item);

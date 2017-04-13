@@ -72,7 +72,7 @@ export class AccountsMemoryPersistence
         let item = items.length > 0 ? items[0] : null;
 
         if (item != null)
-            this._logger.trace(correlationId, "Retrieved %s by %s", item, login);
+            this._logger.trace(correlationId, "Retrieved item by %s", login);
         else
             this._logger.trace(correlationId, "Cannot find item by %s", login);
 
@@ -85,7 +85,7 @@ export class AccountsMemoryPersistence
         let item = items.length > 0 ? items[0] : null;
 
         if (item != null)
-            this._logger.trace(correlationId, "Retrieved %s by %s", item, idOrLogin);
+            this._logger.trace(correlationId, "Retrieved item by %s", idOrLogin);
         else
             this._logger.trace(correlationId, "Cannot find item by %s", idOrLogin);
 
