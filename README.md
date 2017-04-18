@@ -24,6 +24,56 @@ This microservice has optional dependencies on the following microservices:
   - [HTTP Version 1](doc/HttpProtocolV1.md)
   - [Seneca Version 1](doc/SenecaProtocolV1.md)
 
+##  Contract
+
+Logical contract of the microservice is presented below. For physical implementation (HTTP/REST, Thrift, Seneca, Lambda, etc.),
+please, refer to documentation of the specific protocol.
+
+```typescript
+class AccountV1 implements IStringIdentifiable {
+    /* Identification */
+    public id: string;
+    public login: string;
+    public name: string;
+
+    /* Activity tracking */
+    public create_time: Date;
+    public active: boolean;
+
+    /* User preferences */
+    public time_zone: string;
+    public language: string;
+    public theme: string;
+
+    /* Custom fields */
+    public custom_hdr: any;
+    public custom_dat: any;
+}
+
+interface IAccountsV1 {
+    getAccounts(correlationId: string, filter: FilterParams, paging: PagingParams,
+        callback: (err: any, page: DataPage<AccountV1>) => void): void;
+
+    getAccountById(correlationId: string, id: string,
+        callback: (err: any, account: AccountV1) => void): void;
+
+    getAccountByLogin(correlationId: string, login: string,
+        callback: (err: any, account: AccountV1) => void): void;
+
+    getAccountByIdOrLogin(correlationId: string, idOrLogin: string,
+        callback: (err: any, account: AccountV1) => void): void;
+
+    createAccount(correlationId: string, account: AccountV1,
+        callback: (err: any, account: AccountV1) => void): void;
+
+    updateAccount(correlationId: string, account: AccountV1,
+        callback: (err: any, account: AccountV1) => void): void;
+
+    deleteAccountById(correlationId: string, id: string,
+        callback: (err: any, account: AccountV1) => void): void;
+}
+```
+
 ## Download
 
 Right now the only way to get the microservice is to check it out directly from github repository
