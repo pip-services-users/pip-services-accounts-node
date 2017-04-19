@@ -8,7 +8,7 @@ import { AccountsController } from '../logic/AccountsController';
 import { AccountsHttpServiceV1 } from '../services/version1/AccountsHttpServiceV1';
 import { AccountsSenecaServiceV1 } from '../services/version1/AccountsSenecaServiceV1'; 
 
-export class AccountsFactory extends Factory {
+export class AccountsServiceFactory extends Factory {
 	public static Descriptor = new Descriptor("pip-services-Accounts", "factory", "default", "default", "1.0");
 	public static MemoryPersistenceDescriptor = new Descriptor("pip-services-accounts", "persistence", "memory", "*", "1.0");
 	public static FilePersistenceDescriptor = new Descriptor("pip-services-accounts", "persistence", "file", "*", "1.0");
@@ -19,12 +19,12 @@ export class AccountsFactory extends Factory {
 	
 	constructor() {
 		super();
-		this.registerAsType(AccountsFactory.MemoryPersistenceDescriptor, AccountsMemoryPersistence);
-		this.registerAsType(AccountsFactory.FilePersistenceDescriptor, AccountsFilePersistence);
-		this.registerAsType(AccountsFactory.MongoDbPersistenceDescriptor, AccountsMongoDbPersistence);
-		this.registerAsType(AccountsFactory.ControllerDescriptor, AccountsController);
-		this.registerAsType(AccountsFactory.SenecaServiceDescriptor, AccountsSenecaServiceV1);
-		this.registerAsType(AccountsFactory.HttpServiceDescriptor, AccountsHttpServiceV1);
+		this.registerAsType(AccountsServiceFactory.MemoryPersistenceDescriptor, AccountsMemoryPersistence);
+		this.registerAsType(AccountsServiceFactory.FilePersistenceDescriptor, AccountsFilePersistence);
+		this.registerAsType(AccountsServiceFactory.MongoDbPersistenceDescriptor, AccountsMongoDbPersistence);
+		this.registerAsType(AccountsServiceFactory.ControllerDescriptor, AccountsController);
+		this.registerAsType(AccountsServiceFactory.SenecaServiceDescriptor, AccountsSenecaServiceV1);
+		this.registerAsType(AccountsServiceFactory.HttpServiceDescriptor, AccountsHttpServiceV1);
 	}
 	
 }
