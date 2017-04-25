@@ -8,8 +8,8 @@ import { DataPage } from 'pip-services-commons-node';
 import { ICommandable } from 'pip-services-commons-node';
 import { CommandSet } from 'pip-services-commons-node';
 import { AccountV1 } from '../data/version1/AccountV1';
-import { IAccountsBusinessLogic } from './IAccountsBusinessLogic';
-export declare class AccountsController implements IConfigurable, IReferenceable, ICommandable, IAccountsBusinessLogic {
+import { IAccountsController } from './IAccountsController';
+export declare class AccountsController implements IConfigurable, IReferenceable, ICommandable, IAccountsController {
     private static _emailRegex;
     private static _defaultConfig;
     private _dependencyResolver;

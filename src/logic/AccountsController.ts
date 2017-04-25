@@ -19,13 +19,13 @@ import { NotFoundException } from 'pip-services-commons-node';
 import { AccountV1 } from '../data/version1/AccountV1';
 import { AccountActivityTypeV1 } from '../data/version1/AccountActivityTypeV1';
 import { IAccountsPersistence } from '../persistence/IAccountsPersistence';
-import { IAccountsBusinessLogic } from './IAccountsBusinessLogic';
+import { IAccountsController } from './IAccountsController';
 import { AccountsCommandSet } from './AccountsCommandSet';
 
 import { PartyActivityV1 } from 'pip-clients-activities-node';
 import { IActivitiesClientV1 } from 'pip-clients-activities-node';
 
-export class AccountsController implements IConfigurable, IReferenceable, ICommandable, IAccountsBusinessLogic {
+export class AccountsController implements IConfigurable, IReferenceable, ICommandable, IAccountsController {
     private static _emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     private static _defaultConfig: ConfigParams = ConfigParams.fromTuples(
         'dependencies.persistence', 'pip-services-accounts:persistence:*:*:1.0',

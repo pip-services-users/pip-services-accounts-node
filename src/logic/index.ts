@@ -1,2 +1,2 @@
-export { IAccountsBusinessLogic } from './IAccountsBusinessLogic';
+export { IAccountsController } from './IAccountsController';
 export { AccountsController } from './AccountsController';

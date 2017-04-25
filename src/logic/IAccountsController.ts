@@ -4,7 +4,7 @@ import { DataPage } from 'pip-services-commons-node';
 
 import { AccountV1 } from '../data/version1/AccountV1';
 
-export interface IAccountsBusinessLogic {
+export interface IAccountsController {
     getAccounts(correlationId: string, filter: FilterParams, paging: PagingParams,
         callback: (err: any, page: DataPage<AccountV1>) => void): void;
 

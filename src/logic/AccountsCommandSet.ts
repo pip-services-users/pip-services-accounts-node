@@ -11,12 +11,12 @@ import { FilterParamsSchema } from 'pip-services-commons-node';
 import { PagingParamsSchema } from 'pip-services-commons-node';
 
 import { AccountV1Schema } from '../data/version1/AccountV1Schema';
-import { IAccountsBusinessLogic } from './IAccountsBusinessLogic';
+import { IAccountsController } from './IAccountsController';
 
 export class AccountsCommandSet extends CommandSet {
-    private _logic: IAccountsBusinessLogic;
+    private _logic: IAccountsController;
 
-    constructor(logic: IAccountsBusinessLogic) {
+    constructor(logic: IAccountsController) {
         super();
 
         this._logic = logic;
