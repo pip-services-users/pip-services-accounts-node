@@ -9,7 +9,6 @@ export class AccountV1Schema extends ObjectSchema {
         this.withRequiredProperty('name', TypeCode.String);
         this.withOptionalProperty('create_time', null); //TypeCode.DateTime);
         this.withOptionalProperty('active', TypeCode.Boolean);
-        this.withOptionalProperty('change_pwd', TypeCode.Boolean);
         this.withOptionalProperty('about', TypeCode.String);
         this.withOptionalProperty('timezone', TypeCode.String);
         this.withOptionalProperty('language', TypeCode.String);
