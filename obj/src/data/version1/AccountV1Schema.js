@@ -10,6 +10,7 @@ class AccountV1Schema extends pip_services_commons_node_1.ObjectSchema {
         this.withRequiredProperty('name', pip_services_commons_node_2.TypeCode.String);
         this.withOptionalProperty('create_time', null); //TypeCode.DateTime);
         this.withOptionalProperty('active', pip_services_commons_node_2.TypeCode.Boolean);
+        this.withOptionalProperty('change_pwd', pip_services_commons_node_2.TypeCode.Boolean);
         this.withOptionalProperty('about', pip_services_commons_node_2.TypeCode.String);
         this.withOptionalProperty('timezone', pip_services_commons_node_2.TypeCode.String);
         this.withOptionalProperty('language', pip_services_commons_node_2.TypeCode.String);

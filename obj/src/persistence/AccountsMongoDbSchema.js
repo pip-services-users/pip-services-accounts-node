@@ -12,6 +12,7 @@ exports.AccountsMongoDbSchema = function (collection) {
         /* Activity tracking */
         create_time: { type: Date, required: true, 'default': Date.now },
         active: { type: Boolean, required: true, 'default': true },
+        change_pwd: { type: Boolean, required: true, 'default': false },
         /* User preferences */
         time_zone: { type: String, required: false },
         language: { type: String, required: false },

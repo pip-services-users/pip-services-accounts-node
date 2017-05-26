@@ -20,6 +20,7 @@ export class AccountV1 implements IStringIdentifiable {
     /* Activity tracking */
     public create_time: Date;
     public active: boolean;
+    public change_pwd: boolean;
 
     /* User preferences */
     public about: string;
