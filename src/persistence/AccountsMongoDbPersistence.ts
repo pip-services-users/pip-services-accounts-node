@@ -32,6 +32,13 @@ export class AccountsMongoDbPersistence
         if (id != null)
             criteria.push({ _id: id });
 
+        // Filter ids
+        let ids = filter.getAsObject('ids');
+        if (_.isString(ids))
+            ids = ids.split(',');
+        if (_.isArray(ids))
+            criteria.push({ _id: { $in: ids } });
+
         let name = filter.getAsNullableString('name');
         if (name != null)
             criteria.push({ name: name });

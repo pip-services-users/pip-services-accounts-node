@@ -36,16 +36,23 @@ export class AccountsMemoryPersistence
         filter = filter || new FilterParams();
         let search = filter.getAsNullableString('search');
         let id = filter.getAsNullableString('id');
+        let ids = filter.getAsObject('ids');
         let name = filter.getAsNullableString('name');
         let login = filter.getAsNullableString('login');
         let active = filter.getAsNullableBoolean('active');
         let fromCreateTime = filter.getAsNullableDateTime('from_create_time');
         let toCreateTime = filter.getAsNullableDateTime('to_create_time');
 
+        // Process ids filter
+        if (_.isString(ids))
+            ids = ids.split(',');
+        if (!_.isArray(ids))
+            ids = null;
+
         return (item: AccountV1) => {
-            if (search != null && !this.matchSearch(item, search))
-                return false;
             if (id != null && id != item.id)
+                return false;
+            if (ids && _.indexOf(ids, item.id) < 0)
                 return false;
             if (name != null && name != item.name)
                 return false;
@@ -56,6 +63,8 @@ export class AccountsMemoryPersistence
             if (fromCreateTime != null && item.create_time >= fromCreateTime)
                 return false;
             if (toCreateTime != null && item.create_time < toCreateTime)
+                return false;
+            if (search != null && !this.matchSearch(item, search))
                 return false;
             return true;
         };

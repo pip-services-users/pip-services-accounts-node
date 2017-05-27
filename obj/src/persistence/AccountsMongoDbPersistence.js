@@ -19,6 +19,12 @@ class AccountsMongoDbPersistence extends pip_services_data_node_1.IdentifiableMo
         let id = filter.getAsNullableString('id');
         if (id != null)
             criteria.push({ _id: id });
+        // Filter ids
+        let ids = filter.getAsObject('ids');
+        if (_.isString(ids))
+            ids = ids.split(',');
+        if (_.isArray(ids))
+            criteria.push({ _id: { $in: ids } });
         let name = filter.getAsNullableString('name');
         if (name != null)
             criteria.push({ name: name });
