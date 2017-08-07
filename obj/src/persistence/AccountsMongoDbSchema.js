@@ -13,6 +13,7 @@ exports.AccountsMongoDbSchema = function (collection) {
         create_time: { type: Date, required: true, 'default': Date.now },
         active: { type: Boolean, required: true, 'default': true },
         /* User preferences */
+        about: { type: String, required: false },
         time_zone: { type: String, required: false },
         language: { type: String, required: false },
         theme: { type: String, required: false },

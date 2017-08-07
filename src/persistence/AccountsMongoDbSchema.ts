@@ -16,6 +16,7 @@ export let AccountsMongoDbSchema = function(collection?: string) {
             active: { type: Boolean, required: true, 'default': true },
 
             /* User preferences */
+            about: { type: String, required: false },
             time_zone: { type: String, required: false },
             language: { type: String, required: false },
             theme: { type: String, required: false },
