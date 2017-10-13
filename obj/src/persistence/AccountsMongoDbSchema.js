@@ -6,7 +6,7 @@ exports.AccountsMongoDbSchema = function (collection) {
     collection = collection || 'accounts';
     let schema = new mongoose_1.Schema({
         /* Identification */
-        _id: { type: String, unique: true },
+        _id: { type: String },
         login: { type: String, required: true, unique: true, index: true },
         name: { type: String, required: true },
         /* Activity tracking */
