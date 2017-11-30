@@ -14,7 +14,10 @@ class AccountsMongoDbPersistence extends pip_services_data_node_1.IdentifiableMo
         let search = filter.getAsNullableString('search');
         if (search != null) {
             let searchRegex = new RegExp(search, "i");
-            criteria.push({ name: { $regex: searchRegex } });
+            criteria.push({ "$or": [
+                    { login: { $regex: searchRegex } },
+                    { name: { $regex: searchRegex } }
+                ] });
         }
         let id = filter.getAsNullableString('id');
         if (id != null)

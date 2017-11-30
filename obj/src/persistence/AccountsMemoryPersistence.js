@@ -19,6 +19,8 @@ class AccountsMemoryPersistence extends pip_services_data_node_1.IdentifiableMem
         search = search.toLowerCase();
         if (this.matchString(item.name, search))
             return true;
+        if (this.matchString(item.login, search))
+            return true;
         return false;
     }
     composeFilter(filter) {

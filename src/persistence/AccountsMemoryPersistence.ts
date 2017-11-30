@@ -29,6 +29,8 @@ export class AccountsMemoryPersistence
         search = search.toLowerCase();
         if (this.matchString(item.name, search))
             return true;
+        if (this.matchString(item.login, search))
+            return true;
         return false;
     }
 

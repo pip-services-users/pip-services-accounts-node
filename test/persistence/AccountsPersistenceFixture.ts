@@ -164,7 +164,7 @@ export class AccountsPersistenceFixture {
                     null,
                     FilterParams.fromValue({
                         active: true,
-                        search: 'Test'
+                        search: 'user'
                     }),
                     new PagingParams(),
                     (err, page) => {
