@@ -8,6 +8,7 @@ export class AccountV1Schema extends ObjectSchema {
         this.withRequiredProperty('login', TypeCode.String);
         this.withRequiredProperty('name', TypeCode.String);
         this.withOptionalProperty('create_time', null); //TypeCode.DateTime);
+        this.withOptionalProperty('deleted', TypeCode.Boolean);
         this.withOptionalProperty('active', TypeCode.Boolean);
         this.withOptionalProperty('about', TypeCode.String);
         this.withOptionalProperty('timezone', TypeCode.String);

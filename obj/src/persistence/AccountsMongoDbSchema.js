@@ -11,6 +11,7 @@ exports.AccountsMongoDbSchema = function (collection) {
         name: { type: String, required: true },
         /* Activity tracking */
         create_time: { type: Date, required: true, 'default': Date.now },
+        deleted: { type: Boolean, required: false },
         active: { type: Boolean, required: true, 'default': true },
         /* User preferences */
         about: { type: String, required: false },

@@ -62,6 +62,10 @@ export class AccountsMongoDbPersistence
         if (toTime != null)
             criteria.push({ time: { $lt: toTime } });
 
+        let deleted = filter.getAsBooleanWithDefault('deleted', false);
+        if (!deleted)
+            criteria.push({ $or: [ { deleted: false }, { deleted: { $exists: false } } ] });
+                
         return criteria.length > 0 ? { $and: criteria } : {};
     }
 

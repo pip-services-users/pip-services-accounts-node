@@ -5,6 +5,7 @@ export declare class AccountV1 implements IStringIdentifiable {
     login: string;
     name: string;
     create_time: Date;
+    deleted?: boolean;
     active: boolean;
     about: string;
     time_zone: string;

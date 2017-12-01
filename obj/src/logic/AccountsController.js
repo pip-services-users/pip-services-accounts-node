@@ -160,10 +160,25 @@ class AccountsController {
     }
     deleteAccountById(correlationId, id, callback) {
         let oldAccount;
+        let newAccount;
         async.series([
+            // Get account
             (callback) => {
-                this._persistence.deleteById(correlationId, id, (err, data) => {
+                this._persistence.getOneById(correlationId, id, (err, data) => {
                     oldAccount = data;
+                    callback(err);
+                });
+            },
+            // Set logical deletion flag
+            (callback) => {
+                if (oldAccount == null) {
+                    callback();
+                    return;
+                }
+                newAccount = _.clone(oldAccount);
+                newAccount.deleted = true;
+                this._persistence.update(correlationId, newAccount, (err, data) => {
+                    newAccount = data;
                     callback(err);
                 });
             },
@@ -173,7 +188,7 @@ class AccountsController {
                 callback();
             }
         ], (err) => {
-            callback(err, oldAccount);
+            callback(err, err == null ? newAccount : null);
         });
     }
 }

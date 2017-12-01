@@ -44,7 +44,8 @@ export class AccountsMemoryPersistence
         let active = filter.getAsNullableBoolean('active');
         let fromCreateTime = filter.getAsNullableDateTime('from_create_time');
         let toCreateTime = filter.getAsNullableDateTime('to_create_time');
-
+        let deleted = filter.getAsBooleanWithDefault('deleted', false);
+        
         // Process ids filter
         if (_.isString(ids))
             ids = ids.split(',');
@@ -65,6 +66,8 @@ export class AccountsMemoryPersistence
             if (fromCreateTime != null && item.create_time >= fromCreateTime)
                 return false;
             if (toCreateTime != null && item.create_time < toCreateTime)
+                return false;
+            if (!deleted && item.deleted) 
                 return false;
             if (search != null && !this.matchSearch(item, search))
                 return false;

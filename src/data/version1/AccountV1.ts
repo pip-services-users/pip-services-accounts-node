@@ -19,6 +19,7 @@ export class AccountV1 implements IStringIdentifiable {
 
     /* Activity tracking */
     public create_time: Date;
+    public deleted?: boolean;
     public active: boolean;
 
     /* User preferences */
