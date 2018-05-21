@@ -60,7 +60,7 @@ suite('AccountsHttpServiceV1', ()=> {
         async.series([
         // Create one account
             (callback) => {
-                rest.post('/accounts/create_account',
+                rest.post('/v1/accounts/create_account',
                     {
                         account: ACCOUNT1
                     },
@@ -81,7 +81,7 @@ suite('AccountsHttpServiceV1', ()=> {
             },
         // Create another account
             (callback) => {
-                rest.post('/accounts/create_account',
+                rest.post('/v1/accounts/create_account',
                     {
                         account: ACCOUNT2
                     },
@@ -100,7 +100,7 @@ suite('AccountsHttpServiceV1', ()=> {
             },
         // Create yet another quote
             (callback) => {
-                rest.post('/accounts/create_account',
+                rest.post('/v1/accounts/create_account',
                     {
                         account: ACCOUNT3
                     },
@@ -119,7 +119,7 @@ suite('AccountsHttpServiceV1', ()=> {
             },
         // Get all accounts
             (callback) => {
-                rest.post('/accounts/get_accounts',
+                rest.post('/v1/accounts/get_accounts',
                     {
                         filter: {}
                     },
@@ -137,7 +137,7 @@ suite('AccountsHttpServiceV1', ()=> {
             (callback) => {
                 account1.name = 'Updated User 1';
 
-                rest.post('/accounts/update_account',
+                rest.post('/v1/accounts/update_account',
                     {
                         account: account1
                     },
@@ -155,7 +155,7 @@ suite('AccountsHttpServiceV1', ()=> {
             },
         // Delete account
             (callback) => {
-                rest.post('/accounts/delete_account_by_id',
+                rest.post('/v1/accounts/delete_account_by_id',
                     {
                         account_id: ACCOUNT1.id
                     },
@@ -168,7 +168,7 @@ suite('AccountsHttpServiceV1', ()=> {
             },
         // Try to get delete account
             (callback) => {
-                rest.post('/accounts/get_account_by_id',
+                rest.post('/v1/accounts/get_account_by_id',
                     {
                         account_id: ACCOUNT1.id
                     },
