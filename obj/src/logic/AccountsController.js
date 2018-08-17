@@ -4,16 +4,16 @@ let _ = require('lodash');
 let async = require('async');
 const pip_services_commons_node_1 = require("pip-services-commons-node");
 const pip_services_commons_node_2 = require("pip-services-commons-node");
+const pip_services_components_node_1 = require("pip-services-components-node");
 const pip_services_commons_node_3 = require("pip-services-commons-node");
 const pip_services_commons_node_4 = require("pip-services-commons-node");
-const pip_services_commons_node_5 = require("pip-services-commons-node");
 const AccountActivityTypeV1_1 = require("../data/version1/AccountActivityTypeV1");
 const AccountsCommandSet_1 = require("./AccountsCommandSet");
 const pip_clients_activities_node_1 = require("pip-clients-activities-node");
 class AccountsController {
     constructor() {
         this._dependencyResolver = new pip_services_commons_node_2.DependencyResolver(AccountsController._defaultConfig);
-        this._logger = new pip_services_commons_node_3.CompositeLogger();
+        this._logger = new pip_services_components_node_1.CompositeLogger();
         this._loginAsEmail = false;
     }
     configure(config) {
@@ -46,22 +46,22 @@ class AccountsController {
     }
     validateAccount(correlationId, account, callback) {
         if (account.name == null) {
-            callback(new pip_services_commons_node_4.BadRequestException(correlationId, 'NO_NAME', 'Missing account name'), null);
+            callback(new pip_services_commons_node_3.BadRequestException(correlationId, 'NO_NAME', 'Missing account name'), null);
             return false;
         }
         if (this._loginAsEmail) {
             if (account.login == null) {
-                callback(new pip_services_commons_node_4.BadRequestException(correlationId, 'NO_EMAIL', 'Missing account primary email'), null);
+                callback(new pip_services_commons_node_3.BadRequestException(correlationId, 'NO_EMAIL', 'Missing account primary email'), null);
                 return false;
             }
             if (!AccountsController._emailRegex.test(account.login)) {
-                callback(new pip_services_commons_node_4.BadRequestException(correlationId, 'WRONG_EMAIL', 'Invalid account primary email ' + account.login).withDetails('login', account.login), null);
+                callback(new pip_services_commons_node_3.BadRequestException(correlationId, 'WRONG_EMAIL', 'Invalid account primary email ' + account.login).withDetails('login', account.login), null);
                 return false;
             }
         }
         else {
             if (account.login == null) {
-                callback(new pip_services_commons_node_4.BadRequestException(correlationId, 'NO_LOGIN', 'Missing account login'), null);
+                callback(new pip_services_commons_node_3.BadRequestException(correlationId, 'NO_LOGIN', 'Missing account login'), null);
                 return false;
             }
         }
@@ -88,7 +88,7 @@ class AccountsController {
             (callback) => {
                 this._persistence.getOneByLogin(correlationId, account.login, (err, data) => {
                     if (data) {
-                        callback(new pip_services_commons_node_4.BadRequestException(correlationId, 'ALREADY_EXIST', 'User account ' + account.login + ' already exist').withDetails('login', account.login));
+                        callback(new pip_services_commons_node_3.BadRequestException(correlationId, 'ALREADY_EXIST', 'User account ' + account.login + ' already exist').withDetails('login', account.login));
                         return;
                     }
                     callback();
@@ -120,7 +120,7 @@ class AccountsController {
             (callback) => {
                 this._persistence.getOneByLogin(correlationId, account.login, (err, data) => {
                     if (data && data.id != account.id) {
-                        callback(new pip_services_commons_node_4.BadRequestException(correlationId, 'ALREADY_EXIST', 'User account ' + account.login + ' is already exist').withDetails('login', account.login), null);
+                        callback(new pip_services_commons_node_3.BadRequestException(correlationId, 'ALREADY_EXIST', 'User account ' + account.login + ' is already exist').withDetails('login', account.login), null);
                         return;
                     }
                     if (data && data.id == account.id)
@@ -137,7 +137,7 @@ class AccountsController {
                 this._persistence.getOneById(correlationId, account.id, (err, data) => {
                     oldAccount = data;
                     if (oldAccount == null && err == null) {
-                        err = new pip_services_commons_node_5.NotFoundException(correlationId, 'NOT_FOUND', 'User account ' + account.id + ' was not found').withDetails('id', account.id);
+                        err = new pip_services_commons_node_4.NotFoundException(correlationId, 'NOT_FOUND', 'User account ' + account.id + ' was not found').withDetails('id', account.id);
                     }
                     callback(err, null);
                 });
