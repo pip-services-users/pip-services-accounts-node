@@ -56,11 +56,11 @@ export class AccountsMongoDbPersistence
 
         let fromTime = filter.getAsNullableDateTime('from_create_time');
         if (fromTime != null)
-            criteria.push({ time: { $gte: fromTime } });
+            criteria.push({ create_time: { $gte: fromTime } });
 
         let toTime = filter.getAsNullableDateTime('to_create_time');
         if (toTime != null)
-            criteria.push({ time: { $lt: toTime } });
+            criteria.push({ create_time: { $lt: toTime } });
 
         let deleted = filter.getAsBooleanWithDefault('deleted', false);
         if (!deleted)

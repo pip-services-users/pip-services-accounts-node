@@ -39,10 +39,10 @@ class AccountsMongoDbPersistence extends pip_services_mongodb_node_1.Identifiabl
             criteria.push({ active: active });
         let fromTime = filter.getAsNullableDateTime('from_create_time');
         if (fromTime != null)
-            criteria.push({ time: { $gte: fromTime } });
+            criteria.push({ create_time: { $gte: fromTime } });
         let toTime = filter.getAsNullableDateTime('to_create_time');
         if (toTime != null)
-            criteria.push({ time: { $lt: toTime } });
+            criteria.push({ create_time: { $lt: toTime } });
         let deleted = filter.getAsBooleanWithDefault('deleted', false);
         if (!deleted)
             criteria.push({ $or: [{ deleted: false }, { deleted: { $exists: false } }] });
