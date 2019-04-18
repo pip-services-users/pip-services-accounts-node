@@ -100,6 +100,8 @@ export class AccountGrpcConverterV1 {
     }
 
     public static toAccount(obj: any): AccountV1 {
+        if (obj == null) return null;
+
         let account: AccountV1 = {
             id: obj.getId(),
             login: obj.getLogin(),
