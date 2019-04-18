@@ -38,7 +38,6 @@
         "rebenchmark": "tsc && matcha -R clean -I tdd ./obj/benchmark/run.js"
     },
     "dependencies": {
-        "google-protobuf": "^3.7.1",
         "pip-clients-activities-node": "git+ssh://git@github.com:pip-services-users/pip-clients-activities-node.git",
         "pip-services3-aws-node": "^3.0.0",
         "pip-services3-commons-node": "^3.0.0",
@@ -51,6 +50,7 @@
         "pip-services3-grpc-node": "^3.0.0"
     },
     "devDependencies": {
+        "google-protobuf": "^3.7.1",
         "@types/async": "^2.0.0",
         "@types/chai": "*",
         "@types/lodash": "^4.0.0",
