@@ -1,6 +1,6 @@
 {
     "name": "pip-services-accounts-node",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "author": "Conceptual Vision Consulting LLC",
     "description": "User accounts microservice in Node.js",
     "contributors": [
@@ -31,34 +31,36 @@
         "watch": "tsc --watch",
         "launch": "node run",
         "relaunch": "tsc && node run",
+        "protogen1": "cd src/protos && protoc --plugin=protoc-gen-ts=../../node_modules/.bin/protoc-gen-ts --js_out=import_style=commonjs,binary:./ --ts_out=. --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` accounts_v1.proto",
         "test": "mocha -t 10000 -R spec -u tdd --recursive ./obj/test",
         "retest": "tsc && mocha -t 10000 -R spec -u tdd --recursive ./obj/test",
         "benchmark": "matcha -R clean -I tdd ./obj/benchmark/run.js",
         "rebenchmark": "tsc && matcha -R clean -I tdd ./obj/benchmark/run.js"
     },
     "dependencies": {
-        "pip-services-commons-node": "^3.0.0",
-        "pip-services-components-node": "^3.0.0",
-        "pip-services-container-node": "^3.0.0",
-        "pip-services-data-node": "^3.0.0",
-        "pip-services-aws-node": "^3.0.0",
-        "pip-services-rpc-node": "^3.0.0",
-        "pip-services-mongodb-node": "^3.0.0",
-        "pip-services-seneca-node": "^3.0.0",
-        "pip-clients-activities-node": "git+ssh://git@github.com:pip-services-users/pip-clients-activities-node.git"
+        "google-protobuf": "^3.7.1",
+        "pip-clients-activities-node": "git+ssh://git@github.com:pip-services-users/pip-clients-activities-node.git",
+        "pip-services3-aws-node": "^3.0.0",
+        "pip-services3-commons-node": "^3.0.0",
+        "pip-services3-components-node": "^3.0.0",
+        "pip-services3-container-node": "^3.0.0",
+        "pip-services3-couchbase-node": "^3.0.0",
+        "pip-services3-data-node": "^3.0.0",
+        "pip-services3-mongodb-node": "^3.0.0",
+        "pip-services3-rpc-node": "^3.0.0",
+        "pip-services3-grpc-node": "^3.0.0"
     },
     "devDependencies": {
-        "@types/node": "*",
-        "@types/lodash": "^4.0.0",
         "@types/async": "^2.0.0",
         "@types/chai": "*",
+        "@types/lodash": "^4.0.0",
         "@types/mocha": "*",
         "@types/mongodb": "^2.1.38",
         "@types/mongoose": "^4.7.4",
-        "seneca": "^3.3.0",
-        "restify": "^4.3.0",
+        "@types/node": "*",
         "chai": "*",
-        "matcha": "*",
-        "mocha": "*"
+        "mocha": "*",
+        "restify": "^4.3.0",
+        "ts-protoc-gen": "^0.9.0"
     }
 }

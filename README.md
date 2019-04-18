@@ -10,7 +10,7 @@ The microservice currently supports the following deployment options:
 * Persistence: In-Memory, Flat Files, MongoDB
 
 This microservice has optional dependencies on the following microservices:
-- [pip-services-activities-node](https://github.com/pip-services-users/pip-services-activities-node) - to log user activities (signup, signin, change settings)
+- [pip-services3-activities-node](https://github.com/pip-services-users/pip-services3-activities-node) - to log user activities (signup, signin, change settings)
 
 <a name="links"></a> Quick Links:
 
@@ -91,11 +91,11 @@ As the starting point you can use example configuration from **config.example.ym
 
 Example of microservice configuration
 ```yaml
-- descriptor: "pip-services-container:container-info:default:default:1.0"
+- descriptor: "pip-services3-container:container-info:default:default:1.0"
   name: "pip-services-accounts"
   description: "User accounts microservice"
 
-- descriptor: "pip-services-commons:logger:console:default:1.0"
+- descriptor: "pip-services3-commons:logger:console:default:1.0"
   level: "trace"
 
 - descriptor: "pip-services-accounts:persistence:file:default:1.0"

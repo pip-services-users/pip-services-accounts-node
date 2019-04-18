@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
-const pip_services_commons_node_1 = require("pip-services-commons-node");
-const pip_services_commons_node_2 = require("pip-services-commons-node");
-const pip_services_data_node_1 = require("pip-services-data-node");
-class AccountsMemoryPersistence extends pip_services_data_node_1.IdentifiableMemoryPersistence {
+const pip_services3_commons_node_1 = require("pip-services3-commons-node");
+const pip_services3_commons_node_2 = require("pip-services3-commons-node");
+const pip_services3_data_node_1 = require("pip-services3-data-node");
+class AccountsMemoryPersistence extends pip_services3_data_node_1.IdentifiableMemoryPersistence {
     constructor() {
         super();
     }
@@ -24,7 +24,7 @@ class AccountsMemoryPersistence extends pip_services_data_node_1.IdentifiableMem
         return false;
     }
     composeFilter(filter) {
-        filter = filter || new pip_services_commons_node_1.FilterParams();
+        filter = filter || new pip_services3_commons_node_1.FilterParams();
         let search = filter.getAsNullableString('search');
         let id = filter.getAsNullableString('id');
         let ids = filter.getAsObject('ids');
@@ -90,7 +90,7 @@ class AccountsMemoryPersistence extends pip_services_data_node_1.IdentifiableMem
         }
         let existingItem = _.find(this._items, (x) => x.login == item.login);
         if (existingItem != null) {
-            let err = new pip_services_commons_node_2.BadRequestException(correlationId, 'ALREADY_EXIST', 'User account ' + item.login + ' already exist')
+            let err = new pip_services3_commons_node_2.BadRequestException(correlationId, 'ALREADY_EXIST', 'User account ' + item.login + ' already exist')
                 .withDetails('login', item.login);
             callback(err, null);
         }

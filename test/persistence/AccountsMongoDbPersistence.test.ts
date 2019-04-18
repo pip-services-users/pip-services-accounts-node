@@ -1,6 +1,6 @@
 let process = require('process');
 
-import { ConfigParams } from 'pip-services-commons-node';
+import { ConfigParams } from 'pip-services3-commons-node';
 
 import { AccountsMongoDbPersistence } from '../../src/persistence/AccountsMongoDbPersistence';
 import { AccountsPersistenceFixture } from './AccountsPersistenceFixture';
@@ -42,5 +42,9 @@ suite('AccountsMongoDbPersistence', ()=> {
 
     test('CRUD Operations', (done) => {
         fixture.testCrudOperations(done);
+    });
+
+    test('Get with Filters', (done) => {
+        fixture.testGetWithFilter(done);
     });
 });

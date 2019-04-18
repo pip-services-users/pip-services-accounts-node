@@ -1,5 +1,5 @@
-import { IStringIdentifiable } from 'pip-services-commons-node';
-import { IdGenerator } from 'pip-services-commons-node';
+import { IStringIdentifiable } from 'pip-services3-commons-node';
+import { IdGenerator } from 'pip-services3-commons-node';
 
 export class AccountV1 implements IStringIdentifiable {
 
@@ -24,7 +24,7 @@ export class AccountV1 implements IStringIdentifiable {
 
     /* User preferences */
     public about: string;
-    public time_zone: string;
+    public timezone: string;
     public language: string;
     public theme: string;
 

@@ -6,4 +6,6 @@ var AccountsFilePersistence_1 = require("./AccountsFilePersistence");
 exports.AccountsFilePersistence = AccountsFilePersistence_1.AccountsFilePersistence;
 var AccountsMongoDbPersistence_1 = require("./AccountsMongoDbPersistence");
 exports.AccountsMongoDbPersistence = AccountsMongoDbPersistence_1.AccountsMongoDbPersistence;
+var AccountsCouchbasePersistence_1 = require("./AccountsCouchbasePersistence");
+exports.AccountsCouchbasePersistence = AccountsCouchbasePersistence_1.AccountsCouchbasePersistence;
 //# sourceMappingURL=index.js.map

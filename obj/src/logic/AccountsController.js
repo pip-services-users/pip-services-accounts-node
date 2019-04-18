@@ -2,18 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
 let async = require('async');
-const pip_services_commons_node_1 = require("pip-services-commons-node");
-const pip_services_commons_node_2 = require("pip-services-commons-node");
-const pip_services_components_node_1 = require("pip-services-components-node");
-const pip_services_commons_node_3 = require("pip-services-commons-node");
-const pip_services_commons_node_4 = require("pip-services-commons-node");
+const pip_services3_commons_node_1 = require("pip-services3-commons-node");
+const pip_services3_commons_node_2 = require("pip-services3-commons-node");
+const pip_services3_components_node_1 = require("pip-services3-components-node");
+const pip_services3_commons_node_3 = require("pip-services3-commons-node");
+const pip_services3_commons_node_4 = require("pip-services3-commons-node");
 const AccountActivityTypeV1_1 = require("../data/version1/AccountActivityTypeV1");
 const AccountsCommandSet_1 = require("./AccountsCommandSet");
 const pip_clients_activities_node_1 = require("pip-clients-activities-node");
 class AccountsController {
     constructor() {
-        this._dependencyResolver = new pip_services_commons_node_2.DependencyResolver(AccountsController._defaultConfig);
-        this._logger = new pip_services_components_node_1.CompositeLogger();
+        this._dependencyResolver = new pip_services3_commons_node_2.DependencyResolver(AccountsController._defaultConfig);
+        this._logger = new pip_services3_components_node_1.CompositeLogger();
         this._loginAsEmail = false;
     }
     configure(config) {
@@ -46,22 +46,22 @@ class AccountsController {
     }
     validateAccount(correlationId, account, callback) {
         if (account.name == null) {
-            callback(new pip_services_commons_node_3.BadRequestException(correlationId, 'NO_NAME', 'Missing account name'), null);
+            callback(new pip_services3_commons_node_3.BadRequestException(correlationId, 'NO_NAME', 'Missing account name'), null);
             return false;
         }
         if (this._loginAsEmail) {
             if (account.login == null) {
-                callback(new pip_services_commons_node_3.BadRequestException(correlationId, 'NO_EMAIL', 'Missing account primary email'), null);
+                callback(new pip_services3_commons_node_3.BadRequestException(correlationId, 'NO_EMAIL', 'Missing account primary email'), null);
                 return false;
             }
             if (!AccountsController._emailRegex.test(account.login)) {
-                callback(new pip_services_commons_node_3.BadRequestException(correlationId, 'WRONG_EMAIL', 'Invalid account primary email ' + account.login).withDetails('login', account.login), null);
+                callback(new pip_services3_commons_node_3.BadRequestException(correlationId, 'WRONG_EMAIL', 'Invalid account primary email ' + account.login).withDetails('login', account.login), null);
                 return false;
             }
         }
         else {
             if (account.login == null) {
-                callback(new pip_services_commons_node_3.BadRequestException(correlationId, 'NO_LOGIN', 'Missing account login'), null);
+                callback(new pip_services3_commons_node_3.BadRequestException(correlationId, 'NO_LOGIN', 'Missing account login'), null);
                 return false;
             }
         }
@@ -88,7 +88,7 @@ class AccountsController {
             (callback) => {
                 this._persistence.getOneByLogin(correlationId, account.login, (err, data) => {
                     if (data) {
-                        callback(new pip_services_commons_node_3.BadRequestException(correlationId, 'ALREADY_EXIST', 'User account ' + account.login + ' already exist').withDetails('login', account.login));
+                        callback(new pip_services3_commons_node_3.BadRequestException(correlationId, 'ALREADY_EXIST', 'User account ' + account.login + ' already exist').withDetails('login', account.login));
                         return;
                     }
                     callback();
@@ -120,7 +120,7 @@ class AccountsController {
             (callback) => {
                 this._persistence.getOneByLogin(correlationId, account.login, (err, data) => {
                     if (data && data.id != account.id) {
-                        callback(new pip_services_commons_node_3.BadRequestException(correlationId, 'ALREADY_EXIST', 'User account ' + account.login + ' is already exist').withDetails('login', account.login), null);
+                        callback(new pip_services3_commons_node_3.BadRequestException(correlationId, 'ALREADY_EXIST', 'User account ' + account.login + ' is already exist').withDetails('login', account.login), null);
                         return;
                     }
                     if (data && data.id == account.id)
@@ -137,7 +137,7 @@ class AccountsController {
                 this._persistence.getOneById(correlationId, account.id, (err, data) => {
                     oldAccount = data;
                     if (oldAccount == null && err == null) {
-                        err = new pip_services_commons_node_4.NotFoundException(correlationId, 'NOT_FOUND', 'User account ' + account.id + ' was not found').withDetails('id', account.id);
+                        err = new pip_services3_commons_node_4.NotFoundException(correlationId, 'NOT_FOUND', 'User account ' + account.id + ' was not found').withDetails('id', account.id);
                     }
                     callback(err, null);
                 });
@@ -193,6 +193,6 @@ class AccountsController {
     }
 }
 AccountsController._emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-AccountsController._defaultConfig = pip_services_commons_node_1.ConfigParams.fromTuples('dependencies.persistence', 'pip-services-accounts:persistence:*:*:1.0', 'dependencies.activities', 'pip-services-activities:client:*:*:1.0', 'options.login_as_email', false);
+AccountsController._defaultConfig = pip_services3_commons_node_1.ConfigParams.fromTuples('dependencies.persistence', 'pip-services-accounts:persistence:*:*:1.0', 'dependencies.activities', 'pip-services3-activities:client:*:*:1.0', 'options.login_as_email', false);
 exports.AccountsController = AccountsController;
 //# sourceMappingURL=AccountsController.js.map

@@ -1,8 +1,8 @@
 let async = require('async');
 let assert = require('chai').assert;
 
-import { FilterParams } from 'pip-services-commons-node';
-import { PagingParams } from 'pip-services-commons-node';
+import { FilterParams } from 'pip-services3-commons-node';
+import { PagingParams } from 'pip-services3-commons-node';
 
 import { AccountV1 } from '../../src/data/version1/AccountV1';
 import { IAccountsPersistence } from '../../src/persistence/IAccountsPersistence';
@@ -21,6 +21,9 @@ export class AccountsPersistenceFixture {
 
     private createAccounts(done) {
         async.series([
+            // (callback) => {
+            //     setTimeout(callback, 1000);
+            // },
         // Create one account
             (callback) => {
                 this._persistence.create(

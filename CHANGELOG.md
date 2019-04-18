@@ -1,3 +1,12 @@
+<a name="1.1.0"></a>
+### 1.1.0 (2019-04-18)
+
+#### Features
+* **grpc** Added GRPC and Commandable GRPC services
+
+#### Breaking Changes
+* **seneca** Deprecated and removed Seneca services
+
 <a name="1.0.0"></a>
 ### 1.0.0 (2016-06-26)
 

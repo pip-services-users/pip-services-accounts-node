@@ -1,12 +1,12 @@
-import { ConfigParams } from 'pip-services-commons-node';
-import { IConfigurable } from 'pip-services-commons-node';
-import { IReferences } from 'pip-services-commons-node';
-import { IReferenceable } from 'pip-services-commons-node';
-import { FilterParams } from 'pip-services-commons-node';
-import { PagingParams } from 'pip-services-commons-node';
-import { DataPage } from 'pip-services-commons-node';
-import { ICommandable } from 'pip-services-commons-node';
-import { CommandSet } from 'pip-services-commons-node';
+import { ConfigParams } from 'pip-services3-commons-node';
+import { IConfigurable } from 'pip-services3-commons-node';
+import { IReferences } from 'pip-services3-commons-node';
+import { IReferenceable } from 'pip-services3-commons-node';
+import { FilterParams } from 'pip-services3-commons-node';
+import { PagingParams } from 'pip-services3-commons-node';
+import { DataPage } from 'pip-services3-commons-node';
+import { ICommandable } from 'pip-services3-commons-node';
+import { CommandSet } from 'pip-services3-commons-node';
 import { AccountV1 } from '../data/version1/AccountV1';
 import { IAccountsController } from './IAccountsController';
 export declare class AccountsController implements IConfigurable, IReferenceable, ICommandable, IAccountsController {
@@ -25,8 +25,8 @@ export declare class AccountsController implements IConfigurable, IReferenceable
     getAccountById(correlationId: string, id: string, callback: (err: any, account: AccountV1) => void): void;
     getAccountByLogin(correlationId: string, login: string, callback: (err: any, account: AccountV1) => void): void;
     getAccountByIdOrLogin(correlationId: string, idOrLogin: string, callback: (err: any, account: AccountV1) => void): void;
-    private validateAccount(correlationId, account, callback);
-    private logUserActivity(correlationId, account, activityType);
+    private validateAccount;
+    private logUserActivity;
     createAccount(correlationId: string, account: AccountV1, callback: (err: any, account: AccountV1) => void): void;
     updateAccount(correlationId: string, account: AccountV1, callback: (err: any, account: AccountV1) => void): void;
     deleteAccountById(correlationId: string, id: string, callback: (err: any, account: AccountV1) => void): void;

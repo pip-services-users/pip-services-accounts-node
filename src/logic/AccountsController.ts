@@ -1,20 +1,20 @@
 let _ = require('lodash');
 let async = require('async');
 
-import { ConfigParams } from 'pip-services-commons-node';
-import { IConfigurable } from 'pip-services-commons-node';
-import { IReferences } from 'pip-services-commons-node';
-import { Descriptor } from 'pip-services-commons-node';
-import { IReferenceable } from 'pip-services-commons-node';
-import { DependencyResolver } from 'pip-services-commons-node';
-import { FilterParams } from 'pip-services-commons-node';
-import { PagingParams } from 'pip-services-commons-node';
-import { DataPage } from 'pip-services-commons-node';
-import { ICommandable } from 'pip-services-commons-node';
-import { CommandSet } from 'pip-services-commons-node';
-import { CompositeLogger } from 'pip-services-components-node';
-import { BadRequestException } from 'pip-services-commons-node';
-import { NotFoundException } from 'pip-services-commons-node';
+import { ConfigParams } from 'pip-services3-commons-node';
+import { IConfigurable } from 'pip-services3-commons-node';
+import { IReferences } from 'pip-services3-commons-node';
+import { Descriptor } from 'pip-services3-commons-node';
+import { IReferenceable } from 'pip-services3-commons-node';
+import { DependencyResolver } from 'pip-services3-commons-node';
+import { FilterParams } from 'pip-services3-commons-node';
+import { PagingParams } from 'pip-services3-commons-node';
+import { DataPage } from 'pip-services3-commons-node';
+import { ICommandable } from 'pip-services3-commons-node';
+import { CommandSet } from 'pip-services3-commons-node';
+import { CompositeLogger } from 'pip-services3-components-node';
+import { BadRequestException } from 'pip-services3-commons-node';
+import { NotFoundException } from 'pip-services3-commons-node';
 
 import { AccountV1 } from '../data/version1/AccountV1';
 import { AccountActivityTypeV1 } from '../data/version1/AccountActivityTypeV1';
@@ -29,7 +29,7 @@ export class AccountsController implements IConfigurable, IReferenceable, IComma
     private static _emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     private static _defaultConfig: ConfigParams = ConfigParams.fromTuples(
         'dependencies.persistence', 'pip-services-accounts:persistence:*:*:1.0',
-        'dependencies.activities', 'pip-services-activities:client:*:*:1.0',
+        'dependencies.activities', 'pip-services3-activities:client:*:*:1.0',
 
         'options.login_as_email', false
     );
