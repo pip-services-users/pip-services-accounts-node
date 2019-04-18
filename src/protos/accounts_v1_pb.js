@@ -2268,7 +2268,6 @@ proto.accounts.AccountObjectReply.prototype.toObject = function(opt_includeInsta
 proto.accounts.AccountObjectReply.toObject = function(includeInstance, msg) {
   var obj = {
     error: (f = msg.getError()) && proto.accounts.ErrorDescription.toObject(includeInstance, f),
-    noAccount: jspb.Message.getFieldWithDefault(msg, 2, false),
     account: (f = msg.getAccount()) && proto.accounts.Account.toObject(includeInstance, f)
   };
 
@@ -2312,10 +2311,6 @@ proto.accounts.AccountObjectReply.deserializeBinaryFromReader = function(msg, re
       msg.setError(value);
       break;
     case 2:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setNoAccount(value);
-      break;
-    case 3:
       var value = new proto.accounts.Account;
       reader.readMessage(value,proto.accounts.Account.deserializeBinaryFromReader);
       msg.setAccount(value);
@@ -2357,17 +2352,10 @@ proto.accounts.AccountObjectReply.serializeBinaryToWriter = function(message, wr
       proto.accounts.ErrorDescription.serializeBinaryToWriter
     );
   }
-  f = message.getNoAccount();
-  if (f) {
-    writer.writeBool(
-      2,
-      f
-    );
-  }
   f = message.getAccount();
   if (f != null) {
     writer.writeMessage(
-      3,
+      2,
       f,
       proto.accounts.Account.serializeBinaryToWriter
     );
@@ -2409,35 +2397,18 @@ proto.accounts.AccountObjectReply.prototype.hasError = function() {
 
 
 /**
- * optional bool no_account = 2;
- * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
- * You should avoid comparisons like {@code val === true/false} in those cases.
- * @return {boolean}
- */
-proto.accounts.AccountObjectReply.prototype.getNoAccount = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 2, false));
-};
-
-
-/** @param {boolean} value */
-proto.accounts.AccountObjectReply.prototype.setNoAccount = function(value) {
-  jspb.Message.setProto3BooleanField(this, 2, value);
-};
-
-
-/**
- * optional Account account = 3;
+ * optional Account account = 2;
  * @return {?proto.accounts.Account}
  */
 proto.accounts.AccountObjectReply.prototype.getAccount = function() {
   return /** @type{?proto.accounts.Account} */ (
-    jspb.Message.getWrapperField(this, proto.accounts.Account, 3));
+    jspb.Message.getWrapperField(this, proto.accounts.Account, 2));
 };
 
 
 /** @param {?proto.accounts.Account|undefined} value */
 proto.accounts.AccountObjectReply.prototype.setAccount = function(value) {
-  jspb.Message.setWrapperField(this, 3, value);
+  jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -2454,7 +2425,7 @@ proto.accounts.AccountObjectReply.prototype.clearAccount = function() {
  * @return {boolean}
  */
 proto.accounts.AccountObjectReply.prototype.hasAccount = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 

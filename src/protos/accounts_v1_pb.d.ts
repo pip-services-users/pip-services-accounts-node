@@ -309,9 +309,6 @@ export class AccountObjectReply extends jspb.Message {
   getError(): ErrorDescription | undefined;
   setError(value?: ErrorDescription): void;
 
-  getNoAccount(): boolean;
-  setNoAccount(value: boolean): void;
-
   hasAccount(): boolean;
   clearAccount(): void;
   getAccount(): Account | undefined;
@@ -330,7 +327,6 @@ export class AccountObjectReply extends jspb.Message {
 export namespace AccountObjectReply {
   export type AsObject = {
     error?: ErrorDescription.AsObject,
-    noAccount: boolean,
     account?: Account.AsObject,
   }
 }

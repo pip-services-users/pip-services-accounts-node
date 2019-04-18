@@ -111,7 +111,6 @@ message AccountObjectRequest {
 // The response message containing the account object response
 message AccountObjectReply {
   ErrorDescription error = 1;
-  bool no_account = 2;
-  Account account = 3;
+  Account account = 2;
 }
 

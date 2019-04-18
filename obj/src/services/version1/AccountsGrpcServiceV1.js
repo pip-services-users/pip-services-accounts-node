@@ -35,11 +35,9 @@ class AccountsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
         let accountId = call.request.getAccountId();
         this._controller.getAccountById(correlationId, accountId, (err, result) => {
             let error = AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromError(err);
-            let noAccount = err || result == null;
             let account = err == null ? AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromAccount(result) : null;
             let response = new messages.AccountObjectReply();
             response.setError(error);
-            response.setNoAccount(noAccount);
             response.setAccount(account);
             callback(err, response);
         });

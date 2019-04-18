@@ -62,12 +62,10 @@ export class AccountsGrpcServiceV1 extends GrpcService {
             accountId,
             (err, result) => {
                 let error = AccountGrpcConverterV1.fromError(err);
-                let noAccount = err || result == null;
                 let account = err == null ? AccountGrpcConverterV1.fromAccount(result) : null;
 
                 let response = new messages.AccountObjectReply();
                 response.setError(error);
-                response.setNoAccount(noAccount);
                 response.setAccount(account);
 
                 callback(err, response);
