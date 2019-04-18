@@ -11,7 +11,7 @@ export class AccountV1Schema extends ObjectSchema {
         this.withOptionalProperty('deleted', TypeCode.Boolean);
         this.withOptionalProperty('active', TypeCode.Boolean);
         this.withOptionalProperty('about', TypeCode.String);
-        this.withOptionalProperty('timezone', TypeCode.String);
+        this.withOptionalProperty('time_zone', TypeCode.String);
         this.withOptionalProperty('language', TypeCode.String);
         this.withOptionalProperty('theme', TypeCode.String);
         this.withOptionalProperty('custom_hdr', null);

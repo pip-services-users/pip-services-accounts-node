@@ -1,6 +1,6 @@
 import { DataPage } from 'pip-services3-commons-node';
 import { AccountV1 } from '../../data/version1/AccountV1';
-export declare class AccountV1GrpcConverter {
+export declare class AccountGrpcConverterV1 {
     static fromError(err: any): any;
     static toError(obj: any): any;
     static setMap(map: any, values: any): void;

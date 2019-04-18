@@ -24,7 +24,7 @@ export class AccountV1 implements IStringIdentifiable {
 
     /* User preferences */
     public about: string;
-    public timezone: string;
+    public time_zone: string;
     public language: string;
     public theme: string;
 

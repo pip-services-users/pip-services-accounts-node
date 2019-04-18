@@ -6,7 +6,7 @@ const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_commons_node_2 = require("pip-services3-commons-node");
 const pip_services_commons_node_1 = require("pip-services-commons-node");
 const pip_services_commons_node_2 = require("pip-services-commons-node");
-class AccountV1GrpcConverter {
+class AccountGrpcConverterV1 {
     static fromError(err) {
         if (err == null)
             return null;
@@ -20,7 +20,7 @@ class AccountV1GrpcConverter {
         obj.setMessage(description.message);
         obj.setCause(description.cause);
         obj.setStackTrace(description.stack_trace);
-        AccountV1GrpcConverter.setMap(obj.getDetailsMap(), description.details);
+        AccountGrpcConverterV1.setMap(obj.getDetailsMap(), description.details);
         return obj;
     }
     static toError(obj) {
@@ -35,7 +35,7 @@ class AccountV1GrpcConverter {
             message: obj.getMessage(),
             cause: obj.getCause(),
             stack_trace: obj.getStackTrace(),
-            details: AccountV1GrpcConverter.getMap(obj.getDetailsMap())
+            details: AccountGrpcConverterV1.getMap(obj.getDetailsMap())
         };
         return pip_services_commons_node_2.ApplicationExceptionFactory.create(description);
     }
@@ -49,7 +49,7 @@ class AccountV1GrpcConverter {
     }
     static getMap(map) {
         let values = {};
-        AccountV1GrpcConverter.setMap(values, map);
+        AccountGrpcConverterV1.setMap(values, map);
         return values;
     }
     static toJson(value) {
@@ -73,11 +73,11 @@ class AccountV1GrpcConverter {
         obj.setCreateTime(pip_services3_commons_node_1.StringConverter.toString(account.create_time));
         obj.setDeleted(account.deleted);
         obj.setActive(account.active);
-        obj.setTimeZone(account.timezone);
+        obj.setTimeZone(account.time_zone);
         obj.setLanguage(account.language);
         obj.setTheme(account.theme);
-        obj.setCustomHdr(AccountV1GrpcConverter.toJson(account.custom_hdr));
-        obj.setCustomDat(AccountV1GrpcConverter.toJson(account.custom_dat));
+        obj.setCustomHdr(AccountGrpcConverterV1.toJson(account.custom_hdr));
+        obj.setCustomDat(AccountGrpcConverterV1.toJson(account.custom_dat));
         return obj;
     }
     static toAccount(obj) {
@@ -89,11 +89,11 @@ class AccountV1GrpcConverter {
             create_time: pip_services3_commons_node_2.DateTimeConverter.toDateTime(obj.getCreateTime()),
             deleted: obj.getDeleted(),
             active: obj.getActive(),
-            timezone: obj.getTimeZone(),
+            time_zone: obj.getTimeZone(),
             language: obj.getLanguage(),
             theme: obj.getTheme(),
-            custom_hdr: AccountV1GrpcConverter.fromJson(obj.getCustomHdr()),
-            custom_dat: AccountV1GrpcConverter.fromJson(obj.getCustomDat())
+            custom_hdr: AccountGrpcConverterV1.fromJson(obj.getCustomHdr()),
+            custom_dat: AccountGrpcConverterV1.fromJson(obj.getCustomDat())
         };
         return account;
     }
@@ -102,14 +102,14 @@ class AccountV1GrpcConverter {
             return null;
         let obj = new messages.AccountPage();
         obj.setTotal(page.total);
-        let data = _.map(page.data, AccountV1GrpcConverter.fromAccount);
+        let data = _.map(page.data, AccountGrpcConverterV1.fromAccount);
         obj.setDataList(data);
         return obj;
     }
     static toAccountPage(obj) {
         if (obj == null)
             return null;
-        let data = _.map(obj.getDataList(), AccountV1GrpcConverter.toAccount);
+        let data = _.map(obj.getDataList(), AccountGrpcConverterV1.toAccount);
         let page = {
             total: obj.getTotal(),
             data: data
@@ -117,5 +117,5 @@ class AccountV1GrpcConverter {
         return page;
     }
 }
-exports.AccountV1GrpcConverter = AccountV1GrpcConverter;
-//# sourceMappingURL=AccountV1GrpcConverter.js.map
+exports.AccountGrpcConverterV1 = AccountGrpcConverterV1;
+//# sourceMappingURL=AccountGrpcConverterV1.js.map

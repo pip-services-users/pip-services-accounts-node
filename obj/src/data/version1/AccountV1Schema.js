@@ -12,7 +12,7 @@ class AccountV1Schema extends pip_services3_commons_node_1.ObjectSchema {
         this.withOptionalProperty('deleted', pip_services3_commons_node_2.TypeCode.Boolean);
         this.withOptionalProperty('active', pip_services3_commons_node_2.TypeCode.Boolean);
         this.withOptionalProperty('about', pip_services3_commons_node_2.TypeCode.String);
-        this.withOptionalProperty('timezone', pip_services3_commons_node_2.TypeCode.String);
+        this.withOptionalProperty('time_zone', pip_services3_commons_node_2.TypeCode.String);
         this.withOptionalProperty('language', pip_services3_commons_node_2.TypeCode.String);
         this.withOptionalProperty('theme', pip_services3_commons_node_2.TypeCode.String);
         this.withOptionalProperty('custom_hdr', null);

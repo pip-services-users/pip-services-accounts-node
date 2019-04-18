@@ -8,7 +8,7 @@ export declare class AccountV1 implements IStringIdentifiable {
     deleted?: boolean;
     active: boolean;
     about: string;
-    timezone: string;
+    time_zone: string;
     language: string;
     theme: string;
     custom_hdr: any;

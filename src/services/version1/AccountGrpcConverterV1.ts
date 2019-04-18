@@ -10,7 +10,7 @@ import { ApplicationExceptionFactory } from 'pip-services-commons-node';
 
 import { AccountV1 } from '../../data/version1/AccountV1';
 
-export class AccountV1GrpcConverter {
+export class AccountGrpcConverterV1 {
 
     public static fromError(err: any): any {
         if (err == null) return null;
@@ -26,7 +26,7 @@ export class AccountV1GrpcConverter {
         obj.setMessage(description.message);
         obj.setCause(description.cause);
         obj.setStackTrace(description.stack_trace);
-        AccountV1GrpcConverter.setMap(obj.getDetailsMap(), description.details);
+        AccountGrpcConverterV1.setMap(obj.getDetailsMap(), description.details);
 
         return obj;
     }
@@ -44,7 +44,7 @@ export class AccountV1GrpcConverter {
             message: obj.getMessage(),
             cause: obj.getCause(),
             stack_trace: obj.getStackTrace(),
-            details: AccountV1GrpcConverter.getMap(obj.getDetailsMap())
+            details: AccountGrpcConverterV1.getMap(obj.getDetailsMap())
         }
 
         return ApplicationExceptionFactory.create(description);
@@ -61,7 +61,7 @@ export class AccountV1GrpcConverter {
 
     public static getMap(map: any): any {
         let values = {};
-        AccountV1GrpcConverter.setMap(values, map);
+        AccountGrpcConverterV1.setMap(values, map);
         return values;
     }
 
@@ -89,12 +89,12 @@ export class AccountV1GrpcConverter {
         obj.setDeleted(account.deleted);
         obj.setActive(account.active);
         
-        obj.setTimeZone(account.timezone);
+        obj.setTimeZone(account.time_zone);
         obj.setLanguage(account.language);
         obj.setTheme(account.theme);
 
-        obj.setCustomHdr(AccountV1GrpcConverter.toJson(account.custom_hdr));
-        obj.setCustomDat(AccountV1GrpcConverter.toJson(account.custom_dat));
+        obj.setCustomHdr(AccountGrpcConverterV1.toJson(account.custom_hdr));
+        obj.setCustomDat(AccountGrpcConverterV1.toJson(account.custom_dat));
 
         return obj;
     }
@@ -108,11 +108,11 @@ export class AccountV1GrpcConverter {
             create_time: DateTimeConverter.toDateTime(obj.getCreateTime()),
             deleted: obj.getDeleted(),
             active: obj.getActive(),
-            timezone: obj.getTimeZone(),
+            time_zone: obj.getTimeZone(),
             language: obj.getLanguage(),
             theme: obj.getTheme(),
-            custom_hdr: AccountV1GrpcConverter.fromJson(obj.getCustomHdr()),
-            custom_dat: AccountV1GrpcConverter.fromJson(obj.getCustomDat())
+            custom_hdr: AccountGrpcConverterV1.fromJson(obj.getCustomHdr()),
+            custom_dat: AccountGrpcConverterV1.fromJson(obj.getCustomDat())
         };
 
         return account;
@@ -124,7 +124,7 @@ export class AccountV1GrpcConverter {
         let obj = new messages.AccountPage();
 
         obj.setTotal(page.total);
-        let data = _.map(page.data, AccountV1GrpcConverter.fromAccount);
+        let data = _.map(page.data, AccountGrpcConverterV1.fromAccount);
         obj.setDataList(data);
 
         return obj;
@@ -133,7 +133,7 @@ export class AccountV1GrpcConverter {
     public static toAccountPage(obj: any): DataPage<AccountV1> {
         if (obj == null) return null;
 
-        let data = _.map(obj.getDataList(), AccountV1GrpcConverter.toAccount);
+        let data = _.map(obj.getDataList(), AccountGrpcConverterV1.toAccount);
         let page: DataPage<AccountV1> = {
             total: obj.getTotal(),
             data: data

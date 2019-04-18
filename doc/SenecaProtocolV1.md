@@ -55,7 +55,7 @@ It also tracks signup/signin dates and authentication attempts.
 - login: string - user login or primary email if controller is configured so
 - create_time: Date - date and time when account account was created
 - active: boolean - true if account account is active, and false for disabled accounts
-- time_zone: int - account selected timezone
+- time_zone: int - account selected time_zone
 - language: string - account selected language (and culture)
 - theme: string - account selected application color theme
 - custom_hdr: Object - custom data summary that is always returned (in list and details)
