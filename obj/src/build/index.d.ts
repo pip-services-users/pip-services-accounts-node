@@ -1,1 +1,0 @@
-export { AccountsServiceFactory } from './AccountsServiceFactory';
