@@ -10,11 +10,11 @@
 //     let fixture: AccountsPersistenceFixture;
 
 //     setup((done) => {
-//         let couchbaseUri = process.env['COUCHBASE_URI'];
-//         let couchbaseHost = process.env['COUCHBASE_HOST'] || 'localhost';
-//         let couchbasePort = process.env['COUCHBASE_PORT'] || 8091;
-//         let couchbaseUser = process.env['COUCHBASE_USER'] || 'admin';
-//         let couchbasePass = process.env['COUCHBASE_PASS'] || 'pass123';
+//         let couchbaseUri = process.env['COUCHBASE_SERVICE_URI'];
+//         let couchbaseHost = process.env['COUCHBASE_SERVICE_HOST'] || 'localhost';
+//         let couchbasePort = process.env['COUCHBASE_SERVICE_PORT'] || 8091;
+//         let couchbaseUser = process.env['COUCHBASE_USER'] || 'Administrator';
+//         let couchbasePass = process.env['COUCHBASE_PASS'] || 'password';
 //         if (couchbaseUri == null && couchbaseHost == null)
 //             return;
     
