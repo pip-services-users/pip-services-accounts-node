@@ -21,9 +21,6 @@ export class AccountsPersistenceFixture {
 
     private createAccounts(done) {
         async.series([
-            // (callback) => {
-            //     setTimeout(callback, 1000);
-            // },
         // Create one account
             (callback) => {
                 this._persistence.create(

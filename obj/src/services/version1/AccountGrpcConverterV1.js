@@ -4,13 +4,13 @@ let _ = require('lodash');
 let messages = require('../../../../src/protos/accounts_v1_pb');
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_commons_node_2 = require("pip-services3-commons-node");
-const pip_services_commons_node_1 = require("pip-services-commons-node");
-const pip_services_commons_node_2 = require("pip-services-commons-node");
+const pip_services3_commons_node_3 = require("pip-services3-commons-node");
+const pip_services3_commons_node_4 = require("pip-services3-commons-node");
 class AccountGrpcConverterV1 {
     static fromError(err) {
         if (err == null)
             return null;
-        let description = pip_services_commons_node_1.ErrorDescriptionFactory.create(err);
+        let description = pip_services3_commons_node_3.ErrorDescriptionFactory.create(err);
         let obj = new messages.ErrorDescription();
         obj.getType(description.type);
         obj.setCategory(description.category);
@@ -37,7 +37,7 @@ class AccountGrpcConverterV1 {
             stack_trace: obj.getStackTrace(),
             details: AccountGrpcConverterV1.getMap(obj.getDetailsMap())
         };
-        return pip_services_commons_node_2.ApplicationExceptionFactory.create(description);
+        return pip_services3_commons_node_4.ApplicationExceptionFactory.create(description);
     }
     static setMap(map, values) {
         if (values == null)

@@ -4,9 +4,9 @@ let messages = require('../../../../src/protos/accounts_v1_pb');
 import { DataPage } from 'pip-services3-commons-node';
 import { StringConverter } from 'pip-services3-commons-node';
 import { DateTimeConverter } from 'pip-services3-commons-node';
-import { ErrorDescriptionFactory } from 'pip-services-commons-node';
-import { ErrorDescription } from 'pip-services-commons-node';
-import { ApplicationExceptionFactory } from 'pip-services-commons-node';
+import { ErrorDescriptionFactory } from 'pip-services3-commons-node';
+import { ErrorDescription } from 'pip-services3-commons-node';
+import { ApplicationExceptionFactory } from 'pip-services3-commons-node';
 
 import { AccountV1 } from '../../data/version1/AccountV1';
 
