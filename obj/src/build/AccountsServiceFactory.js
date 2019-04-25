@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const pip_services3_components_node_1 = require("pip-services3-components-node");
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
+const AccountsCouchbasePersistence_1 = require("../persistence/AccountsCouchbasePersistence");
 const AccountsMongoDbPersistence_1 = require("../persistence/AccountsMongoDbPersistence");
 const AccountsFilePersistence_1 = require("../persistence/AccountsFilePersistence");
 const AccountsMemoryPersistence_1 = require("../persistence/AccountsMemoryPersistence");
@@ -15,6 +16,7 @@ class AccountsServiceFactory extends pip_services3_components_node_1.Factory {
         this.registerAsType(AccountsServiceFactory.MemoryPersistenceDescriptor, AccountsMemoryPersistence_1.AccountsMemoryPersistence);
         this.registerAsType(AccountsServiceFactory.FilePersistenceDescriptor, AccountsFilePersistence_1.AccountsFilePersistence);
         this.registerAsType(AccountsServiceFactory.MongoDbPersistenceDescriptor, AccountsMongoDbPersistence_1.AccountsMongoDbPersistence);
+        this.registerAsType(AccountsServiceFactory.CouchbasePersistenceDescriptor, AccountsCouchbasePersistence_1.AccountsCouchbasePersistence);
         this.registerAsType(AccountsServiceFactory.ControllerDescriptor, AccountsController_1.AccountsController);
         this.registerAsType(AccountsServiceFactory.HttpServiceDescriptor, AccountsHttpServiceV1_1.AccountsHttpServiceV1);
         this.registerAsType(AccountsServiceFactory.GrpcServiceDescriptor, AccountsGrpcServiceV1_1.AccountsGrpcServiceV1);
@@ -25,6 +27,7 @@ AccountsServiceFactory.Descriptor = new pip_services3_commons_node_1.Descriptor(
 AccountsServiceFactory.MemoryPersistenceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-accounts", "persistence", "memory", "*", "1.0");
 AccountsServiceFactory.FilePersistenceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-accounts", "persistence", "file", "*", "1.0");
 AccountsServiceFactory.MongoDbPersistenceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-accounts", "persistence", "mongodb", "*", "1.0");
+AccountsServiceFactory.CouchbasePersistenceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-accounts", "persistence", "couchbase", "*", "1.0");
 AccountsServiceFactory.ControllerDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-accounts", "controller", "default", "*", "1.0");
 AccountsServiceFactory.HttpServiceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-accounts", "service", "http", "*", "1.0");
 AccountsServiceFactory.GrpcServiceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-accounts", "service", "grpc", "*", "1.0");

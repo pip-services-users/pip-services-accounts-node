@@ -5,6 +5,7 @@ export declare class AccountsServiceFactory extends Factory {
     static MemoryPersistenceDescriptor: Descriptor;
     static FilePersistenceDescriptor: Descriptor;
     static MongoDbPersistenceDescriptor: Descriptor;
+    static CouchbasePersistenceDescriptor: Descriptor;
     static ControllerDescriptor: Descriptor;
     static HttpServiceDescriptor: Descriptor;
     static GrpcServiceDescriptor: Descriptor;
