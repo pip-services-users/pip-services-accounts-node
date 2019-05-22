@@ -4,12 +4,12 @@ export declare class AccountsGrpcServiceV1 extends GrpcService {
     private _controller;
     constructor();
     setReferences(references: IReferences): void;
-    private getAccounts;
-    private getAccountById;
-    private getAccountByLogin;
-    private getAccountByIdOrLogin;
-    private createAccount;
-    private updateAccount;
-    private deleteAccountById;
+    private getAccounts(call, callback);
+    private getAccountById(call, callback);
+    private getAccountByLogin(call, callback);
+    private getAccountByIdOrLogin(call, callback);
+    private createAccount(call, callback);
+    private updateAccount(call, callback);
+    private deleteAccountById(call, callback);
     register(): void;
 }
