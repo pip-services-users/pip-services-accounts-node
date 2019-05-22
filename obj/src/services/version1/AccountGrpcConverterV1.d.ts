@@ -5,8 +5,8 @@ export declare class AccountGrpcConverterV1 {
     static toError(obj: any): any;
     static setMap(map: any, values: any): void;
     static getMap(map: any): any;
-    private static toJson;
-    private static fromJson;
+    private static toJson(value);
+    private static fromJson(value);
     static fromAccount(account: AccountV1): any;
     static toAccount(obj: any): AccountV1;
     static fromAccountPage(page: DataPage<AccountV1>): any;
