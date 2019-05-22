@@ -45,7 +45,7 @@
         "pip-services3-container-node": "^3.0.0",
         "pip-services3-couchbase-node": "^3.0.0",
         "pip-services3-data-node": "^3.0.0",
-        "pip-services3-mongodb-node": "^3.0.0",
+        "pip-services3-mongoose-node": "^3.0.0",
         "pip-services3-rpc-node": "^3.0.0",
         "pip-services3-grpc-node": "^3.0.0"
     },

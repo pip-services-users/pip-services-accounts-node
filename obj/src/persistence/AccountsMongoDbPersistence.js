@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
-const pip_services3_mongodb_node_1 = require("pip-services3-mongodb-node");
-const AccountsMongoDbSchema_1 = require("./AccountsMongoDbSchema");
-class AccountsMongoDbPersistence extends pip_services3_mongodb_node_1.IdentifiableMongoDbPersistence {
+const pip_services3_mongoose_node_1 = require("pip-services3-mongoose-node");
+const AccountsMongooseSchema_1 = require("./AccountsMongooseSchema");
+class AccountsMongoDbPersistence extends pip_services3_mongoose_node_1.IdentifiableMongoosePersistence {
     constructor() {
-        super('accounts', AccountsMongoDbSchema_1.AccountsMongoDbSchema());
+        super('accounts', AccountsMongooseSchema_1.AccountsMongooseSchema());
     }
     composeFilter(filter) {
         filter = filter || new pip_services3_commons_node_1.FilterParams();

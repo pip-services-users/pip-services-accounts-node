@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 let Mixed = mongoose_1.Schema.Types.Mixed;
-exports.AccountsMongoDbSchema = function (collection) {
+exports.AccountsMongooseSchema = function (collection) {
     collection = collection || 'accounts';
     let schema = new mongoose_1.Schema({
         /* Identification */
@@ -36,4 +36,4 @@ exports.AccountsMongoDbSchema = function (collection) {
     });
     return schema;
 };
-//# sourceMappingURL=AccountsMongoDbSchema.js.map
+//# sourceMappingURL=AccountsMongooseSchema.js.map
