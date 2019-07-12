@@ -63,7 +63,7 @@ suite('AccountsGrpcServiceV1', ()=> {
                 oneofs: true
             }
         );
-        let clientProto = grpc.loadPackageDefinition(packageDefinition).accounts.Accounts;
+        let clientProto = grpc.loadPackageDefinition(packageDefinition).accounts_v1.Accounts;
 
         client = new clientProto('localhost:3000', grpc.credentials.createInsecure());
     });

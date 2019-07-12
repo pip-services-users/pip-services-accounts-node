@@ -15,11 +15,11 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "pip-services.users.accounts";
-option java_outer_classname = "AccountsProto";
-option objc_class_prefix = "ACCOUNTS_CMD";
+option java_package = "pip-services.users.accounts.version1";
+option java_outer_classname = "AccountsProtoV1";
+option objc_class_prefix = "ACCOUNTS_CMD_V1";
 
-package accounts;
+package accounts_v1;
 
 message ErrorDescription {
   string type = 1;

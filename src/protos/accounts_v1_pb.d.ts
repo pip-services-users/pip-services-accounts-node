@@ -1,4 +1,4 @@
-// package: accounts
+// package: accounts_v1
 // file: accounts_v1.proto
 
 import * as jspb from "google-protobuf";
