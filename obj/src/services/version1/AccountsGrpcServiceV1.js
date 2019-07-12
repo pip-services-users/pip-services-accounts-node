@@ -5,7 +5,6 @@ let services = require('../../../../src/protos/accounts_v1_grpc_pb');
 let messages = require('../../../../src/protos/accounts_v1_pb');
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_commons_node_2 = require("pip-services3-commons-node");
-const pip_services3_commons_node_3 = require("pip-services3-commons-node");
 const pip_services3_grpc_node_1 = require("pip-services3-grpc-node");
 const AccountGrpcConverterV1_1 = require("./AccountGrpcConverterV1");
 class AccountsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
@@ -19,8 +18,9 @@ class AccountsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
     }
     getAccounts(call, callback) {
         let correlationId = call.request.getCorrelationId();
-        let filter = pip_services3_commons_node_2.FilterParams.fromValue(call.request.filterMap);
-        let paging = pip_services3_commons_node_3.PagingParams.fromValue(call.request.paging);
+        let filter = new pip_services3_commons_node_2.FilterParams();
+        AccountGrpcConverterV1_1.AccountGrpcConverterV1.setMap(call.request.getFilterMap(), filter);
+        let paging = AccountGrpcConverterV1_1.AccountGrpcConverterV1.toPagingParams(call.request.getPaging());
         this._controller.getAccounts(correlationId, filter, paging, (err, result) => {
             let error = AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromError(err);
             let page = err == null ? AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromAccountPage(result) : null;

@@ -6,13 +6,14 @@ const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_commons_node_2 = require("pip-services3-commons-node");
 const pip_services3_commons_node_3 = require("pip-services3-commons-node");
 const pip_services3_commons_node_4 = require("pip-services3-commons-node");
+const pip_services3_commons_node_5 = require("pip-services3-commons-node");
 class AccountGrpcConverterV1 {
     static fromError(err) {
         if (err == null)
             return null;
-        let description = pip_services3_commons_node_3.ErrorDescriptionFactory.create(err);
+        let description = pip_services3_commons_node_4.ErrorDescriptionFactory.create(err);
         let obj = new messages.ErrorDescription();
-        obj.getType(description.type);
+        obj.setType(description.type);
         obj.setCategory(description.category);
         obj.setCode(description.code);
         obj.setCorrelationId(description.correlation_id);
@@ -37,7 +38,7 @@ class AccountGrpcConverterV1 {
             stack_trace: obj.getStackTrace(),
             details: AccountGrpcConverterV1.getMap(obj.getDetailsMap())
         };
-        return pip_services3_commons_node_4.ApplicationExceptionFactory.create(description);
+        return pip_services3_commons_node_5.ApplicationExceptionFactory.create(description);
     }
     static setMap(map, values) {
         if (values == null)
@@ -62,6 +63,21 @@ class AccountGrpcConverterV1 {
             return null;
         return JSON.parse(value);
     }
+    static fromPagingParams(paging) {
+        if (paging == null)
+            return null;
+        let obj = new messages.PagingParams();
+        obj.setSkip(paging.skip);
+        obj.setTake(paging.take);
+        obj.setTotal(paging.total);
+        return obj;
+    }
+    static toPagingParams(obj) {
+        if (obj == null)
+            return null;
+        let paging = new pip_services3_commons_node_1.PagingParams(obj.getSkip(), obj.getTake(), obj.getTotal());
+        return paging;
+    }
     static fromAccount(account) {
         if (account == null)
             return null;
@@ -70,7 +86,7 @@ class AccountGrpcConverterV1 {
         obj.setLogin(account.login);
         obj.setName(account.name);
         obj.setAbout(account.about);
-        obj.setCreateTime(pip_services3_commons_node_1.StringConverter.toString(account.create_time));
+        obj.setCreateTime(pip_services3_commons_node_2.StringConverter.toString(account.create_time));
         obj.setDeleted(account.deleted);
         obj.setActive(account.active);
         obj.setTimeZone(account.time_zone);
@@ -88,7 +104,7 @@ class AccountGrpcConverterV1 {
             login: obj.getLogin(),
             name: obj.getName(),
             about: obj.getAbout(),
-            create_time: pip_services3_commons_node_2.DateTimeConverter.toDateTime(obj.getCreateTime()),
+            create_time: pip_services3_commons_node_3.DateTimeConverter.toDateTime(obj.getCreateTime()),
             deleted: obj.getDeleted(),
             active: obj.getActive(),
             time_zone: obj.getTimeZone(),

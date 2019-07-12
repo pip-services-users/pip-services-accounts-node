@@ -33,8 +33,9 @@ export class AccountsGrpcServiceV1 extends GrpcService {
     
     private getAccounts(call: any, callback: any) {
         let correlationId = call.request.getCorrelationId();
-        let filter = FilterParams.fromValue(call.request.filterMap);
-        let paging = PagingParams.fromValue(call.request.paging);
+        let filter = new FilterParams();
+        AccountGrpcConverterV1.setMap(call.request.getFilterMap(), filter);
+        let paging = AccountGrpcConverterV1.toPagingParams(call.request.getPaging());
 
         this._controller.getAccounts(
             correlationId,

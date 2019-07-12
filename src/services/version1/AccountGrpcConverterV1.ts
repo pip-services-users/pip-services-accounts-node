@@ -2,6 +2,7 @@ let _ = require('lodash');
 let messages = require('../../../../src/protos/accounts_v1_pb');
 
 import { DataPage } from 'pip-services3-commons-node';
+import { PagingParams } from 'pip-services3-commons-node';
 import { StringConverter } from 'pip-services3-commons-node';
 import { DateTimeConverter } from 'pip-services3-commons-node';
 import { ErrorDescriptionFactory } from 'pip-services3-commons-node';
@@ -18,7 +19,7 @@ export class AccountGrpcConverterV1 {
         let description = ErrorDescriptionFactory.create(err);
         let obj = new messages.ErrorDescription();
 
-        obj.getType(description.type);
+        obj.setType(description.type);
         obj.setCategory(description.category);
         obj.setCode(description.code);
         obj.setCorrelationId(description.correlation_id);
@@ -73,6 +74,31 @@ export class AccountGrpcConverterV1 {
     private static fromJson(value: string): any {
         if (value == null || value == "") return null;
         return JSON.parse(value);
+    }
+
+    public static fromPagingParams(paging: PagingParams): any {
+        if (paging == null) return null;
+
+        let obj = new messages.PagingParams();
+
+        obj.setSkip(paging.skip);
+        obj.setTake(paging.take);
+        obj.setTotal(paging.total);
+
+        return obj;
+    }
+
+    public static toPagingParams(obj: any): PagingParams {
+        if (obj == null)
+            return null;
+
+        let paging: PagingParams = new PagingParams(
+            obj.getSkip(),
+            obj.getTake(),
+            obj.getTotal()
+        );
+
+        return paging;
     }
 
     public static fromAccount(account: AccountV1): any {
