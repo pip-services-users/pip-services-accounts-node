@@ -46,7 +46,7 @@ class AccountsCouchbasePersistence extends pip_services3_couchbase_node_1.Identi
         return filters.length > 0 ? filters.join(" AND ") : null;
     }
     getPageByFilter(correlationId, filter, paging, callback) {
-        super.getPageByFilter(correlationId, this.composeFilter(filter), paging, null, null, callback);
+        super.getPageByFilter(correlationId, this.composeFilter(filter), paging, 'create_time DESC', null, callback);
     }
     getOneByLogin(correlationId, login, callback) {
         let loginFilter = "login='" + login + "'";

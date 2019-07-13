@@ -61,7 +61,7 @@ export class AccountsCouchbasePersistence
 
     public getPageByFilter(correlationId: string, filter: FilterParams, paging: PagingParams,
         callback: (err: any, page: DataPage<AccountV1>) => void): void {
-        super.getPageByFilter(correlationId, this.composeFilter(filter), paging, null, null, callback);
+        super.getPageByFilter(correlationId, this.composeFilter(filter), paging, 'create_time DESC', null, callback);
     }
 
     public getOneByLogin(correlationId: string, login: string,
