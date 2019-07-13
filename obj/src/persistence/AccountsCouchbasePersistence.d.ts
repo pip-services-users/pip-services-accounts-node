@@ -6,7 +6,7 @@ import { AccountV1 } from '../data/version1/AccountV1';
 import { IAccountsPersistence } from './IAccountsPersistence';
 export declare class AccountsCouchbasePersistence extends IdentifiableCouchbasePersistence<AccountV1, string> implements IAccountsPersistence {
     constructor();
-    private composeFilter;
+    private composeFilter(filter);
     getPageByFilter(correlationId: string, filter: FilterParams, paging: PagingParams, callback: (err: any, page: DataPage<AccountV1>) => void): void;
     getOneByLogin(correlationId: string, login: string, callback: (err: any, item: AccountV1) => void): void;
     getOneByIdOrLogin(correlationId: string, idOrLogin: string, callback: (err: any, item: AccountV1) => void): void;
