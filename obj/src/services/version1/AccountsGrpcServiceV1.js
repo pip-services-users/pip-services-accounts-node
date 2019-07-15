@@ -6,7 +6,7 @@ let messages = require('../../../../src/protos/accounts_v1_pb');
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_commons_node_2 = require("pip-services3-commons-node");
 const pip_services3_grpc_node_1 = require("pip-services3-grpc-node");
-const AccountGrpcConverterV1_1 = require("./AccountGrpcConverterV1");
+const AccountsGrpcConverterV1_1 = require("./AccountsGrpcConverterV1");
 class AccountsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
     constructor() {
         super(services.AccountsService);
@@ -19,11 +19,11 @@ class AccountsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
     getAccounts(call, callback) {
         let correlationId = call.request.getCorrelationId();
         let filter = new pip_services3_commons_node_2.FilterParams();
-        AccountGrpcConverterV1_1.AccountGrpcConverterV1.setMap(call.request.getFilterMap(), filter);
-        let paging = AccountGrpcConverterV1_1.AccountGrpcConverterV1.toPagingParams(call.request.getPaging());
+        AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.setMap(call.request.getFilterMap(), filter);
+        let paging = AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.toPagingParams(call.request.getPaging());
         this._controller.getAccounts(correlationId, filter, paging, (err, result) => {
-            let error = AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromError(err);
-            let page = err == null ? AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromAccountPage(result) : null;
+            let error = AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.fromError(err);
+            let page = err == null ? AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.fromAccountPage(result) : null;
             let response = new messages.AccountPageReply();
             response.setError(error);
             response.setPage(page);
@@ -34,8 +34,8 @@ class AccountsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
         let correlationId = call.request.getCorrelationId();
         let accountId = call.request.getAccountId();
         this._controller.getAccountById(correlationId, accountId, (err, result) => {
-            let error = AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromError(err);
-            let account = err == null ? AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromAccount(result) : null;
+            let error = AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.fromError(err);
+            let account = err == null ? AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.fromAccount(result) : null;
             let response = new messages.AccountObjectReply();
             response.setError(error);
             response.setAccount(account);
@@ -46,8 +46,8 @@ class AccountsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
         let correlationId = call.request.getCorrelationId();
         let login = call.request.getLogin();
         this._controller.getAccountByLogin(correlationId, login, (err, result) => {
-            let error = AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromError(err);
-            let account = err == null ? AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromAccount(result) : null;
+            let error = AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.fromError(err);
+            let account = err == null ? AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.fromAccount(result) : null;
             let response = new messages.AccountObjectReply();
             response.setError(error);
             if (result)
@@ -59,8 +59,8 @@ class AccountsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
         let correlationId = call.request.getCorrelationId();
         let login = call.request.getLogin();
         this._controller.getAccountByIdOrLogin(correlationId, login, (err, result) => {
-            let error = AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromError(err);
-            let account = err == null ? AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromAccount(result) : null;
+            let error = AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.fromError(err);
+            let account = err == null ? AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.fromAccount(result) : null;
             let response = new messages.AccountObjectReply();
             response.setError(error);
             if (result)
@@ -70,10 +70,10 @@ class AccountsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
     }
     createAccount(call, callback) {
         let correlationId = call.request.getCorrelationId();
-        let account = AccountGrpcConverterV1_1.AccountGrpcConverterV1.toAccount(call.request.getAccount());
+        let account = AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.toAccount(call.request.getAccount());
         this._controller.createAccount(correlationId, account, (err, result) => {
-            let error = AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromError(err);
-            let account = err == null ? AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromAccount(result) : null;
+            let error = AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.fromError(err);
+            let account = err == null ? AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.fromAccount(result) : null;
             let response = new messages.AccountObjectReply();
             response.setError(error);
             if (result)
@@ -83,10 +83,10 @@ class AccountsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
     }
     updateAccount(call, callback) {
         let correlationId = call.request.getCorrelationId();
-        let account = AccountGrpcConverterV1_1.AccountGrpcConverterV1.toAccount(call.request.getAccount());
+        let account = AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.toAccount(call.request.getAccount());
         this._controller.updateAccount(correlationId, account, (err, result) => {
-            let error = AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromError(err);
-            let account = err == null ? AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromAccount(result) : null;
+            let error = AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.fromError(err);
+            let account = err == null ? AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.fromAccount(result) : null;
             let response = new messages.AccountObjectReply();
             response.setError(error);
             if (result)
@@ -98,8 +98,8 @@ class AccountsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
         let correlationId = call.request.getCorrelationId();
         let accountId = call.request.getAccountId();
         this._controller.deleteAccountById(correlationId, accountId, (err, result) => {
-            let error = AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromError(err);
-            let account = err == null ? AccountGrpcConverterV1_1.AccountGrpcConverterV1.fromAccount(result) : null;
+            let error = AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.fromError(err);
+            let account = err == null ? AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.fromAccount(result) : null;
             let response = new messages.AccountObjectReply();
             response.setError(error);
             if (result)

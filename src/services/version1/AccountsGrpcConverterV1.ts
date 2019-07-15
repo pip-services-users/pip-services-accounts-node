@@ -11,7 +11,7 @@ import { ApplicationExceptionFactory } from 'pip-services3-commons-node';
 
 import { AccountV1 } from '../../data/version1/AccountV1';
 
-export class AccountGrpcConverterV1 {
+export class AccountsGrpcConverterV1 {
 
     public static fromError(err: any): any {
         if (err == null) return null;
@@ -27,7 +27,7 @@ export class AccountGrpcConverterV1 {
         obj.setMessage(description.message);
         obj.setCause(description.cause);
         obj.setStackTrace(description.stack_trace);
-        AccountGrpcConverterV1.setMap(obj.getDetailsMap(), description.details);
+        AccountsGrpcConverterV1.setMap(obj.getDetailsMap(), description.details);
 
         return obj;
     }
@@ -45,7 +45,7 @@ export class AccountGrpcConverterV1 {
             message: obj.getMessage(),
             cause: obj.getCause(),
             stack_trace: obj.getStackTrace(),
-            details: AccountGrpcConverterV1.getMap(obj.getDetailsMap())
+            details: AccountsGrpcConverterV1.getMap(obj.getDetailsMap())
         }
 
         return ApplicationExceptionFactory.create(description);
@@ -62,7 +62,7 @@ export class AccountGrpcConverterV1 {
 
     public static getMap(map: any): any {
         let values = {};
-        AccountGrpcConverterV1.setMap(values, map);
+        AccountsGrpcConverterV1.setMap(values, map);
         return values;
     }
 
@@ -119,8 +119,8 @@ export class AccountGrpcConverterV1 {
         obj.setLanguage(account.language);
         obj.setTheme(account.theme);
 
-        obj.setCustomHdr(AccountGrpcConverterV1.toJson(account.custom_hdr));
-        obj.setCustomDat(AccountGrpcConverterV1.toJson(account.custom_dat));
+        obj.setCustomHdr(AccountsGrpcConverterV1.toJson(account.custom_hdr));
+        obj.setCustomDat(AccountsGrpcConverterV1.toJson(account.custom_dat));
 
         return obj;
     }
@@ -139,8 +139,8 @@ export class AccountGrpcConverterV1 {
             time_zone: obj.getTimeZone(),
             language: obj.getLanguage(),
             theme: obj.getTheme(),
-            custom_hdr: AccountGrpcConverterV1.fromJson(obj.getCustomHdr()),
-            custom_dat: AccountGrpcConverterV1.fromJson(obj.getCustomDat())
+            custom_hdr: AccountsGrpcConverterV1.fromJson(obj.getCustomHdr()),
+            custom_dat: AccountsGrpcConverterV1.fromJson(obj.getCustomDat())
         };
 
         return account;
@@ -152,7 +152,7 @@ export class AccountGrpcConverterV1 {
         let obj = new messages.AccountPage();
 
         obj.setTotal(page.total);
-        let data = _.map(page.data, AccountGrpcConverterV1.fromAccount);
+        let data = _.map(page.data, AccountsGrpcConverterV1.fromAccount);
         obj.setDataList(data);
 
         return obj;
@@ -161,7 +161,7 @@ export class AccountGrpcConverterV1 {
     public static toAccountPage(obj: any): DataPage<AccountV1> {
         if (obj == null) return null;
 
-        let data = _.map(obj.getDataList(), AccountGrpcConverterV1.toAccount);
+        let data = _.map(obj.getDataList(), AccountsGrpcConverterV1.toAccount);
         let page: DataPage<AccountV1> = {
             total: obj.getTotal(),
             data: data

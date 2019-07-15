@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_commons_node_2 = require("pip-services3-commons-node");
+const pip_services3_commons_node_3 = require("pip-services3-commons-node");
 const pip_services3_couchbase_node_1 = require("pip-services3-couchbase-node");
 class AccountsCouchbasePersistence extends pip_services3_couchbase_node_1.IdentifiableCouchbasePersistence {
     constructor() {
@@ -38,9 +39,9 @@ class AccountsCouchbasePersistence extends pip_services3_couchbase_node_1.Identi
         if (search != null)
             filters.push("(name LIKE '%" + search + "%' OR login LIKE '%" + login + "%')");
         if (fromCreateTime != null)
-            filters.push("create_time>='" + fromCreateTime + "'");
+            filters.push("create_time>='" + pip_services3_commons_node_2.StringConverter.toString(fromCreateTime) + "'");
         if (toCreateTime != null)
-            filters.push("create_time<'" + toCreateTime + "'");
+            filters.push("create_time<'" + pip_services3_commons_node_2.StringConverter.toString(toCreateTime) + "'");
         if (!deleted)
             filters.push("(deleted=FALSE or deleted IS MISSING)");
         return filters.length > 0 ? filters.join(" AND ") : null;
@@ -91,7 +92,7 @@ class AccountsCouchbasePersistence extends pip_services3_couchbase_node_1.Identi
                 return;
             }
             if (items != null && items.length > 0) {
-                let err = new pip_services3_commons_node_2.BadRequestException(correlationId, 'ALREADY_EXIST', 'User account ' + item.login + ' already exist')
+                let err = new pip_services3_commons_node_3.BadRequestException(correlationId, 'ALREADY_EXIST', 'User account ' + item.login + ' already exist')
                     .withDetails('login', item.login);
                 callback(err, null);
                 return;

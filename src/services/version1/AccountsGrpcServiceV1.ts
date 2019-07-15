@@ -16,7 +16,7 @@ import { GrpcService } from 'pip-services3-grpc-node';
 import { AccountV1 } from '../../data/version1/AccountV1';
 import { AccountV1Schema } from '../../data/version1/AccountV1Schema';
 import { IAccountsController } from '../../logic/IAccountsController';
-import { AccountGrpcConverterV1 } from './AccountGrpcConverterV1';
+import { AccountsGrpcConverterV1 } from './AccountsGrpcConverterV1';
 
 export class AccountsGrpcServiceV1 extends GrpcService {
     private _controller: IAccountsController;
@@ -34,16 +34,16 @@ export class AccountsGrpcServiceV1 extends GrpcService {
     private getAccounts(call: any, callback: any) {
         let correlationId = call.request.getCorrelationId();
         let filter = new FilterParams();
-        AccountGrpcConverterV1.setMap(call.request.getFilterMap(), filter);
-        let paging = AccountGrpcConverterV1.toPagingParams(call.request.getPaging());
+        AccountsGrpcConverterV1.setMap(call.request.getFilterMap(), filter);
+        let paging = AccountsGrpcConverterV1.toPagingParams(call.request.getPaging());
 
         this._controller.getAccounts(
             correlationId,
             filter,
             paging,
             (err, result) => {
-                let error = AccountGrpcConverterV1.fromError(err);
-                let page = err == null ? AccountGrpcConverterV1.fromAccountPage(result) : null;
+                let error = AccountsGrpcConverterV1.fromError(err);
+                let page = err == null ? AccountsGrpcConverterV1.fromAccountPage(result) : null;
 
                 let response = new messages.AccountPageReply();
                 response.setError(error);
@@ -62,8 +62,8 @@ export class AccountsGrpcServiceV1 extends GrpcService {
             correlationId,
             accountId,
             (err, result) => {
-                let error = AccountGrpcConverterV1.fromError(err);
-                let account = err == null ? AccountGrpcConverterV1.fromAccount(result) : null;
+                let error = AccountsGrpcConverterV1.fromError(err);
+                let account = err == null ? AccountsGrpcConverterV1.fromAccount(result) : null;
 
                 let response = new messages.AccountObjectReply();
                 response.setError(error);
@@ -82,8 +82,8 @@ export class AccountsGrpcServiceV1 extends GrpcService {
             correlationId,
             login,
             (err, result) => {
-                let error = AccountGrpcConverterV1.fromError(err);
-                let account = err == null ? AccountGrpcConverterV1.fromAccount(result) : null;
+                let error = AccountsGrpcConverterV1.fromError(err);
+                let account = err == null ? AccountsGrpcConverterV1.fromAccount(result) : null;
 
                 let response = new messages.AccountObjectReply();
                 response.setError(error);
@@ -103,8 +103,8 @@ export class AccountsGrpcServiceV1 extends GrpcService {
             correlationId,
             login,
             (err, result) => {
-                let error = AccountGrpcConverterV1.fromError(err);
-                let account = err == null ? AccountGrpcConverterV1.fromAccount(result) : null;
+                let error = AccountsGrpcConverterV1.fromError(err);
+                let account = err == null ? AccountsGrpcConverterV1.fromAccount(result) : null;
 
                 let response = new messages.AccountObjectReply();
                 response.setError(error);
@@ -118,14 +118,14 @@ export class AccountsGrpcServiceV1 extends GrpcService {
     
     private createAccount(call: any, callback: any) {
         let correlationId = call.request.getCorrelationId();
-        let account = AccountGrpcConverterV1.toAccount(call.request.getAccount());
+        let account = AccountsGrpcConverterV1.toAccount(call.request.getAccount());
 
         this._controller.createAccount(
             correlationId,
             account,
             (err, result) => {
-                let error = AccountGrpcConverterV1.fromError(err);
-                let account = err == null ? AccountGrpcConverterV1.fromAccount(result) : null;
+                let error = AccountsGrpcConverterV1.fromError(err);
+                let account = err == null ? AccountsGrpcConverterV1.fromAccount(result) : null;
 
                 let response = new messages.AccountObjectReply();
                 response.setError(error);
@@ -139,14 +139,14 @@ export class AccountsGrpcServiceV1 extends GrpcService {
 
     private updateAccount(call: any, callback: any) {
         let correlationId = call.request.getCorrelationId();
-        let account = AccountGrpcConverterV1.toAccount(call.request.getAccount());
+        let account = AccountsGrpcConverterV1.toAccount(call.request.getAccount());
 
         this._controller.updateAccount(
             correlationId,
             account,
             (err, result) => {
-                let error = AccountGrpcConverterV1.fromError(err);
-                let account = err == null ? AccountGrpcConverterV1.fromAccount(result) : null;
+                let error = AccountsGrpcConverterV1.fromError(err);
+                let account = err == null ? AccountsGrpcConverterV1.fromAccount(result) : null;
 
                 let response = new messages.AccountObjectReply();
                 response.setError(error);
@@ -166,8 +166,8 @@ export class AccountsGrpcServiceV1 extends GrpcService {
             correlationId,
             accountId,
             (err, result) => {
-                let error = AccountGrpcConverterV1.fromError(err);
-                let account = err == null ? AccountGrpcConverterV1.fromAccount(result) : null;
+                let error = AccountsGrpcConverterV1.fromError(err);
+                let account = err == null ? AccountsGrpcConverterV1.fromAccount(result) : null;
 
                 let response = new messages.AccountObjectReply();
                 response.setError(error);

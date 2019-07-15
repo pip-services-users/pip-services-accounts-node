@@ -3,12 +3,12 @@ let _ = require('lodash');
 import { FilterParams } from 'pip-services3-commons-node';
 import { PagingParams } from 'pip-services3-commons-node';
 import { DataPage } from 'pip-services3-commons-node';
+import { StringConverter } from 'pip-services3-commons-node';
 import { BadRequestException } from 'pip-services3-commons-node';
 import { IdentifiableCouchbasePersistence } from 'pip-services3-couchbase-node';
 
 import { AccountV1 } from '../data/version1/AccountV1';
 import { IAccountsPersistence } from './IAccountsPersistence';
-import { GridFSBucketReadStream } from 'mongodb';
 
 export class AccountsCouchbasePersistence 
     extends IdentifiableCouchbasePersistence<AccountV1, string> 
@@ -50,9 +50,9 @@ export class AccountsCouchbasePersistence
         if (search != null)
             filters.push("(name LIKE '%" + search + "%' OR login LIKE '%" + login + "%')");
         if (fromCreateTime != null)
-            filters.push("create_time>='" + fromCreateTime + "'");
+            filters.push("create_time>='" + StringConverter.toString(fromCreateTime) + "'");
         if (toCreateTime != null)
-            filters.push("create_time<'" + toCreateTime + "'");
+            filters.push("create_time<'" + StringConverter.toString(toCreateTime) + "'");
         if (!deleted)
             filters.push("(deleted=FALSE or deleted IS MISSING)");
 
