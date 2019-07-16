@@ -37,7 +37,7 @@ class AccountsCouchbasePersistence extends pip_services3_couchbase_node_1.Identi
         if (active != null)
             filters.push("active=" + (active ? 'TRUE' : 'FALSE'));
         if (search != null)
-            filters.push("(name LIKE '%" + search + "%' OR login LIKE '%" + login + "%')");
+            filters.push("(name LIKE '%" + search + "%' OR login LIKE '%" + search + "%')");
         if (fromCreateTime != null)
             filters.push("create_time>='" + pip_services3_commons_node_2.StringConverter.toString(fromCreateTime) + "'");
         if (toCreateTime != null)

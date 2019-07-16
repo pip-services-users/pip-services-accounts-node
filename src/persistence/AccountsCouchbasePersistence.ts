@@ -48,7 +48,7 @@ export class AccountsCouchbasePersistence
         if (active != null)
             filters.push("active=" + (active ? 'TRUE' : 'FALSE'));
         if (search != null)
-            filters.push("(name LIKE '%" + search + "%' OR login LIKE '%" + login + "%')");
+            filters.push("(name LIKE '%" + search + "%' OR login LIKE '%" + search + "%')");
         if (fromCreateTime != null)
             filters.push("create_time>='" + StringConverter.toString(fromCreateTime) + "'");
         if (toCreateTime != null)
