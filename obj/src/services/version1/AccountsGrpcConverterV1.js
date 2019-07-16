@@ -43,9 +43,19 @@ class AccountsGrpcConverterV1 {
     static setMap(map, values) {
         if (values == null)
             return;
-        for (let propName in values) {
-            if (values.hasOwnProperty(propName))
-                map[propName] = values[propName];
+        if (_.isFunction(values.toObject))
+            values = values.toObject();
+        if (_.isArray(values)) {
+            for (let entry of values) {
+                if (_.isArray(entry))
+                    map[entry[0]] = entry[1];
+            }
+        }
+        else {
+            for (let propName in values) {
+                if (values.hasOwnProperty(propName))
+                    map[propName] = values[propName];
+            }
         }
     }
     static getMap(map) {

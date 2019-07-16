@@ -19,7 +19,7 @@ class AccountsGrpcServiceV1 extends pip_services3_grpc_node_1.GrpcService {
     getAccounts(call, callback) {
         let correlationId = call.request.getCorrelationId();
         let filter = new pip_services3_commons_node_2.FilterParams();
-        AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.setMap(call.request.getFilterMap(), filter);
+        AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.setMap(filter, call.request.getFilterMap());
         let paging = AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.toPagingParams(call.request.getPaging());
         this._controller.getAccounts(correlationId, filter, paging, (err, result) => {
             let error = AccountsGrpcConverterV1_1.AccountsGrpcConverterV1.fromError(err);
