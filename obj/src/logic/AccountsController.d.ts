@@ -25,8 +25,8 @@ export declare class AccountsController implements IConfigurable, IReferenceable
     getAccountById(correlationId: string, id: string, callback: (err: any, account: AccountV1) => void): void;
     getAccountByLogin(correlationId: string, login: string, callback: (err: any, account: AccountV1) => void): void;
     getAccountByIdOrLogin(correlationId: string, idOrLogin: string, callback: (err: any, account: AccountV1) => void): void;
-    private validateAccount;
-    private logUserActivity;
+    private validateAccount(correlationId, account, callback);
+    private logUserActivity(correlationId, account, activityType);
     createAccount(correlationId: string, account: AccountV1, callback: (err: any, account: AccountV1) => void): void;
     updateAccount(correlationId: string, account: AccountV1, callback: (err: any, account: AccountV1) => void): void;
     deleteAccountById(correlationId: string, id: string, callback: (err: any, account: AccountV1) => void): void;
