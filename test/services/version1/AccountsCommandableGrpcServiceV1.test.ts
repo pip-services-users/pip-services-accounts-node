@@ -25,7 +25,7 @@ let ACCOUNT1 = new AccountV1('1', 'account1@conceptual.vision', 'Test User 1');
 let ACCOUNT2 = new AccountV1('2', 'account2@conceptual.vision', 'Test User 2');
 let ACCOUNT3 = new AccountV1('3', 'account3@conceptual.vision', 'Test User 3');
 
-suite('AccountsCommandbaleGrpcServiceV1', ()=> {
+suite('AccountsCommandableGrpcServiceV1', ()=> {
     let service: AccountsCommandableGrpcServiceV1;
 
     let client: any;

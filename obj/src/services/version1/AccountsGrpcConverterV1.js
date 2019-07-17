@@ -52,9 +52,17 @@ class AccountsGrpcConverterV1 {
             }
         }
         else {
-            for (let propName in values) {
-                if (values.hasOwnProperty(propName))
-                    map[propName] = values[propName];
+            if (_.isFunction(map.set)) {
+                for (let propName in values) {
+                    if (values.hasOwnProperty(propName))
+                        map.set(propName, values[propName]);
+                }
+            }
+            else {
+                for (let propName in values) {
+                    if (values.hasOwnProperty(propName))
+                        map[propName] = values[propName];
+                }
             }
         }
     }

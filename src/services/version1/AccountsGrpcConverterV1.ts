@@ -63,9 +63,16 @@ export class AccountsGrpcConverterV1 {
                     map[entry[0]] = entry[1];
             }
         } else {
-            for (let propName in values) {
-                if (values.hasOwnProperty(propName))
-                    map[propName] = values[propName];
+            if (_.isFunction(map.set)) {
+                for (let propName in values) {
+                    if (values.hasOwnProperty(propName))
+                        map.set(propName, values[propName]);
+                }
+            } else {
+                for (let propName in values) {
+                    if (values.hasOwnProperty(propName))
+                        map[propName] = values[propName];
+                }
             }
         }
     }
