@@ -15,7 +15,7 @@ export class AccountsCouchbasePersistence
     implements IAccountsPersistence {
 
     constructor() {
-        super('accounts');
+        super('users', 'accounts');
     }
 
     private composeFilter(filter: FilterParams): any {
