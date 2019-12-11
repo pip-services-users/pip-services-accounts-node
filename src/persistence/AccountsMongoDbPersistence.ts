@@ -3,18 +3,17 @@ let _ = require('lodash');
 import { FilterParams } from 'pip-services3-commons-node';
 import { PagingParams } from 'pip-services3-commons-node';
 import { DataPage } from 'pip-services3-commons-node';
-import { IdentifiableMongoosePersistence } from 'pip-services3-mongoose-node';
+import { IdentifiableMongoDbPersistence } from 'pip-services3-mongodb-node';
 
 import { AccountV1 } from '../data/version1/AccountV1';
 import { IAccountsPersistence } from './IAccountsPersistence';
-import { AccountsMongooseSchema } from './AccountsMongooseSchema';
 
 export class AccountsMongoDbPersistence 
-    extends IdentifiableMongoosePersistence<AccountV1, string> 
+    extends IdentifiableMongoDbPersistence<AccountV1, string> 
     implements IAccountsPersistence {
 
     constructor() {
-        super('accounts', AccountsMongooseSchema());
+        super('accounts');
     }
 
     private composeFilter(filter: FilterParams): any {
@@ -75,7 +74,7 @@ export class AccountsMongoDbPersistence
 
     public getOneByLogin(correlationId: string, login: string,
         callback: (err: any, item: AccountV1) => void): void {
-        this._model.findOne(
+        this._collection.findOne(
             {
                 login: login
             }, 
@@ -91,7 +90,7 @@ export class AccountsMongoDbPersistence
 
     public getOneByIdOrLogin(correlationId: string, idOrLogin: string,
         callback: (err: any, item: AccountV1) => void): void {
-        this._model.findOne(
+        this._collection.findOne(
             {
                 $or: [
                     { _id: idOrLogin },

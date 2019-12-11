@@ -23,6 +23,7 @@ class AccountsServiceFactory extends pip_services3_components_node_1.Factory {
         this.registerAsType(AccountsServiceFactory.CommandableGrpcServiceDescriptor, AccountsCommandableGrpcServiceV1_1.AccountsCommandableGrpcServiceV1);
     }
 }
+exports.AccountsServiceFactory = AccountsServiceFactory;
 AccountsServiceFactory.Descriptor = new pip_services3_commons_node_1.Descriptor("pip-services-accounts", "factory", "default", "default", "1.0");
 AccountsServiceFactory.MemoryPersistenceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-accounts", "persistence", "memory", "*", "1.0");
 AccountsServiceFactory.FilePersistenceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-accounts", "persistence", "file", "*", "1.0");
@@ -32,5 +33,4 @@ AccountsServiceFactory.ControllerDescriptor = new pip_services3_commons_node_1.D
 AccountsServiceFactory.HttpServiceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-accounts", "service", "http", "*", "1.0");
 AccountsServiceFactory.GrpcServiceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-accounts", "service", "grpc", "*", "1.0");
 AccountsServiceFactory.CommandableGrpcServiceDescriptor = new pip_services3_commons_node_1.Descriptor("pip-services-accounts", "service", "commandable-grpc", "*", "1.0");
-exports.AccountsServiceFactory = AccountsServiceFactory;
 //# sourceMappingURL=AccountsServiceFactory.js.map

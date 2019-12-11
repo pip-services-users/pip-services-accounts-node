@@ -1,6 +1,6 @@
 {
     "name": "pip-services-accounts-node",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "author": "Conceptual Vision Consulting LLC",
     "description": "User accounts microservice in Node.js",
     "contributors": [
@@ -38,16 +38,16 @@
         "rebenchmark": "tsc && matcha -R clean -I tdd ./obj/benchmark/run.js"
     },
     "dependencies": {
-        "pip-clients-activities-node": "git+ssh://git@github.com:pip-services-users/pip-clients-activities-node.git",
-        "pip-services3-aws-node": "^3.0.0",
         "pip-services3-commons-node": "^3.0.0",
         "pip-services3-components-node": "^3.0.0",
         "pip-services3-container-node": "^3.0.0",
         "pip-services3-couchbase-node": "^3.0.0",
         "pip-services3-data-node": "^3.0.0",
-        "pip-services3-mongoose-node": "^3.0.0",
+        "pip-services3-mongodb-node": "^3.0.0",
         "pip-services3-rpc-node": "^3.0.0",
-        "pip-services3-grpc-node": "^3.0.0"
+        "pip-services3-grpc-node": "^3.0.0",
+        "pip-services3-aws-node": "^3.0.0",
+        "pip-clients-activities-node": "^1.0.1"
     },
     "devDependencies": {
         "google-protobuf": "^3.7.1",
@@ -57,7 +57,6 @@
         "@types/lodash": "^4.0.0",
         "@types/mocha": "*",
         "@types/mongodb": "^2.1.38",
-        "@types/mongoose": "^4.7.4",
         "@types/node": "*",
         "chai": "*",
         "mocha": "*",

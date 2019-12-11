@@ -2,11 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 let _ = require('lodash');
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
-const pip_services3_mongoose_node_1 = require("pip-services3-mongoose-node");
-const AccountsMongooseSchema_1 = require("./AccountsMongooseSchema");
-class AccountsMongoDbPersistence extends pip_services3_mongoose_node_1.IdentifiableMongoosePersistence {
+const pip_services3_mongodb_node_1 = require("pip-services3-mongodb-node");
+class AccountsMongoDbPersistence extends pip_services3_mongodb_node_1.IdentifiableMongoDbPersistence {
     constructor() {
-        super('accounts', AccountsMongooseSchema_1.AccountsMongooseSchema());
+        super('accounts');
     }
     composeFilter(filter) {
         filter = filter || new pip_services3_commons_node_1.FilterParams();
@@ -52,7 +51,7 @@ class AccountsMongoDbPersistence extends pip_services3_mongoose_node_1.Identifia
         super.getPageByFilter(correlationId, this.composeFilter(filter), paging, '-create_time', { custom_dat: 0 }, callback);
     }
     getOneByLogin(correlationId, login, callback) {
-        this._model.findOne({
+        this._collection.findOne({
             login: login
         }, (err, item) => {
             if (!err)
@@ -62,7 +61,7 @@ class AccountsMongoDbPersistence extends pip_services3_mongoose_node_1.Identifia
         });
     }
     getOneByIdOrLogin(correlationId, idOrLogin, callback) {
-        this._model.findOne({
+        this._collection.findOne({
             $or: [
                 { _id: idOrLogin },
                 { login: idOrLogin }

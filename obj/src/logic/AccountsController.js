@@ -192,7 +192,7 @@ class AccountsController {
         });
     }
 }
+exports.AccountsController = AccountsController;
 AccountsController._emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 AccountsController._defaultConfig = pip_services3_commons_node_1.ConfigParams.fromTuples('dependencies.persistence', 'pip-services-accounts:persistence:*:*:1.0', 'dependencies.activities', 'pip-services3-activities:client:*:*:1.0', 'options.login_as_email', false);
-exports.AccountsController = AccountsController;
 //# sourceMappingURL=AccountsController.js.map
