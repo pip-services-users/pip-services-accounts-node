@@ -8,7 +8,7 @@ class AccountV1Schema extends pip_services3_commons_node_1.ObjectSchema {
         this.withOptionalProperty('id', pip_services3_commons_node_2.TypeCode.String);
         this.withRequiredProperty('login', pip_services3_commons_node_2.TypeCode.String);
         this.withRequiredProperty('name', pip_services3_commons_node_2.TypeCode.String);
-        this.withOptionalProperty('create_time', null); //TypeCode.DateTime);
+        this.withOptionalProperty('create_time', pip_services3_commons_node_2.TypeCode.DateTime);
         this.withOptionalProperty('deleted', pip_services3_commons_node_2.TypeCode.Boolean);
         this.withOptionalProperty('active', pip_services3_commons_node_2.TypeCode.Boolean);
         this.withOptionalProperty('about', pip_services3_commons_node_2.TypeCode.String);

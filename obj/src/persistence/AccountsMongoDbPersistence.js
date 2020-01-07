@@ -6,6 +6,7 @@ const pip_services3_mongodb_node_1 = require("pip-services3-mongodb-node");
 class AccountsMongoDbPersistence extends pip_services3_mongodb_node_1.IdentifiableMongoDbPersistence {
     constructor() {
         super('accounts');
+        super.ensureIndex({ login: 1 }, { unique: true });
     }
     composeFilter(filter) {
         filter = filter || new pip_services3_commons_node_1.FilterParams();

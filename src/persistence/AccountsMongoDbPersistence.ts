@@ -14,6 +14,7 @@ export class AccountsMongoDbPersistence
 
     constructor() {
         super('accounts');
+        super.ensureIndex({ login: 1 }, { unique: true });
     }
 
     private composeFilter(filter: FilterParams): any {
