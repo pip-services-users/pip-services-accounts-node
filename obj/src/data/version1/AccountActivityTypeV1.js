@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AccountActivityTypeV1 = void 0;
 class AccountActivityTypeV1 {
 }
 exports.AccountActivityTypeV1 = AccountActivityTypeV1;
