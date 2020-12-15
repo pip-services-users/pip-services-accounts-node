@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AccountsGrpcServiceV1 = void 0;
 let _ = require('lodash');
 let services = require('../../../../src/protos/accounts_v1_grpc_pb');
 let messages = require('../../../../src/protos/accounts_v1_pb');

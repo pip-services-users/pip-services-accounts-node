@@ -22,7 +22,7 @@ export class AccountsMemoryPersistence
             return true;
         if (value == null || search == null)
             return false;
-        return value.toLowerCase().indexOf(search) >= 0;
+        return value.toLowerCase().indexOf(search.toLowerCase()) >= 0;
     }
 
     private matchSearch(item: AccountV1, search: string): boolean {

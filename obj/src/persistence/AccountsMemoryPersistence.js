@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AccountsMemoryPersistence = void 0;
 let _ = require('lodash');
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_commons_node_2 = require("pip-services3-commons-node");
@@ -13,7 +14,7 @@ class AccountsMemoryPersistence extends pip_services3_data_node_1.IdentifiableMe
             return true;
         if (value == null || search == null)
             return false;
-        return value.toLowerCase().indexOf(search) >= 0;
+        return value.toLowerCase().indexOf(search.toLowerCase()) >= 0;
     }
     matchSearch(item, search) {
         search = search.toLowerCase();
